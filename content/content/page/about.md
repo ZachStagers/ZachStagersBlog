@@ -1,34 +1,27 @@
 ---
 title: About
-description: Hugo, the world's fastest framework for building websites
-date: '2019-02-28'
-hidden: true
+description: Zach Stagers, Principal Data Analytics and Engineering Consultant
+hidden: true #hides page from the main blog post stream.
 aliases:
-  - about-us
-  - about-hugo
+  - about-me
   - contact
-license: CC BY-NC-ND
-lastmod: '2020-10-09'
 menu:
     main: 
         weight: -90
         pre: user
+comments:
+    enabled: false
 ---
 
-Written in Go, Hugo is an open source static site generator available under the [Apache Licence 2.0.](https://github.com/gohugoio/hugo/blob/master/LICENSE) Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+I’m an ambitious Microsoft and Databricks certified data analytics professional with over 10 years experience working with Microsoft data platforms and related technologies.
 
-Hugo makes use of a variety of open source projects including:
+During this time I've gained valuable experience in data engineering, modelling, and analysis, as well as requirement gathering and project leadership.
 
-* https://github.com/yuin/goldmark
-* https://github.com/alecthomas/chroma
-* https://github.com/muesli/smartcrop
-* https://github.com/spf13/cobra
-* https://github.com/spf13/viper
+My role is extremely diverse, and covers many subject areas and technologies. I'm enormously passionate about my job, and love doing cool and exciting things with data!
 
-Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.
 
-Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.
 
-Websites built with Hugo are extremelly fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.
-
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+You can connect and contact me here:
+* [GitHub](https://github.com/ZachStagers)
+* [Twitter](https://twitter.com/ZachStagers)
+* [LinkedIn](https://www.linkedin.com/in/zachstagers/)

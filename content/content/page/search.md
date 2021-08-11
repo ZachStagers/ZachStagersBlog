@@ -6,6 +6,8 @@ hidden: true
 outputs:
     - html
     - json
+comments:
+    enabled: false
 #menu:
 #    main:
 #        weight: -60

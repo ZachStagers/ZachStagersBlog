@@ -8,4 +8,6 @@ menu:
     main:
         weight: -70
         pre: archives
+comments:
+    enabled: false
 ---
