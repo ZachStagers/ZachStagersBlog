@@ -108,7 +108,7 @@ params:
     opengraph:
         twitter:
             # Your Twitter username
-            site: https://twitter.com/ZachStagers
+            site: ZachStagers
 
             # Available values: summary, summary_large_image
             card: summary_large_image
@@ -159,8 +159,8 @@ related:
 
 markup:
     tableOfContents:
-        endLevel: 4
+        endLevel: 1
         ordered: true
-        startLevel: 2
+        startLevel: 1
     highlight:
         noClasses: false
