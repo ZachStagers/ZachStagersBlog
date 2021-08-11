@@ -21,7 +21,7 @@ My role is extremely diverse, and covers many subject areas and technologies. I'
 
 
 
-You can connect and contact me here:
+You can connect with and contact me here:
 * [GitHub](https://github.com/ZachStagers)
 * [Twitter](https://twitter.com/ZachStagers)
 * [LinkedIn](https://www.linkedin.com/in/zachstagers/)
