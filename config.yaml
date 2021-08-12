@@ -2,7 +2,7 @@ baseurl: https://example.com
 languageCode: en-us
 theme: stack
 paginate: 5
-title: Zach Stagers
+title: Zach Stagers - Data Enthusiast
 
 # Change it to your Disqus shortname before using
 disqusShortname: stack
@@ -23,7 +23,7 @@ params:
         - post
     featuredImageField: image
     rssFullContent: true
-    favicon: 
+    favicon: favicon.ico
 
     footer:
         since: 2021
@@ -124,7 +124,7 @@ params:
         toggle: true
 
         # Available values: auto, light, dark
-        default: dark
+        default: light
 
     imageProcessing:
         cover:
