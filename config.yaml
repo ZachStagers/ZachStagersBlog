@@ -2,7 +2,7 @@ baseurl: https://example.com
 languageCode: en-us
 theme: stack
 paginate: 5
-title: Zach Stagers - Data Enthusiast
+title: Zach Stagers
 
 # Change it to your Disqus shortname before using
 disqusShortname: stack
