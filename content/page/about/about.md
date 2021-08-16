@@ -38,4 +38,5 @@ You can connect with me and contact me via any of these:
 * [Twitter](https://twitter.com/ZachStagers)
 * [LinkedIn](https://www.linkedin.com/in/zachstagers/)
 * [Sessionize](https://sessionize.com/zach-stagers)
+* [Ko-fi](https://ko-fi.com/zachstagers)
 * [GitHub](https://github.com/ZachStagers)
