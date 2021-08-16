@@ -34,9 +34,4 @@ This is me, just after the Great South Run 2019!
 
 ### Get in touch
 
-You can connect with me and contact me via any of these:
-* [Twitter](https://twitter.com/ZachStagers)
-* [LinkedIn](https://www.linkedin.com/in/zachstagers/)
-* [Sessionize](https://sessionize.com/zach-stagers)
-* [Ko-fi](https://ko-fi.com/zachstagers)
-* [GitHub](https://github.com/ZachStagers)
+You can get in touch or connect with via any of these...    
