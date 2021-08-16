@@ -32,8 +32,8 @@ Below is a visualisation of a simple folder structure with the minimum ACL's req
 
 There are a few things to be mindful of when testing with ACL's:
 * Folder names are case sensitive.
-* Testing via storage explorer won't work, you need to use something like Databricks or Power BI.
 * You need to connect to the lake using the Data Lake Storage end point - `https://<lakename>.dfs.core.windows.net/<container>/<folders>`
+* If testing via storage explorer, connect to the lake using the 'ADLS Gen2 container or directory' option.
 
 ### The Mask ACL
 
