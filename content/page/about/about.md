@@ -24,7 +24,7 @@ My intention with this site is to share my technical findings, to serve as a cat
 
 ### Offline 
 
-
+{{< images "../page/about/zach_stagers_about1.jpg" "Zach Stagers Great South Run 2019" "right" >}}
 
 I currently live in the south coast of England, and away from work I spend a great deal of time out and about with my camera, typically trying to capture images of landscapes or animals. The banner images for my posts are my own photographs - trying to find some relevance between a post and picture can be tricky! If you'd care to, you can see more of my photographs [here](https://www.istockphoto.com/portfolio/ZachStagers).
 

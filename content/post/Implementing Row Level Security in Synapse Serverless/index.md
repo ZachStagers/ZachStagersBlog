@@ -9,7 +9,7 @@ tags:
     - "Security"
     - "Data Lake"
 draft: true
-image: banner_azure_datalake_acl.jpg
+#image: banner_azure_datalake_acl.jpg
 ---
 
 ### Introduction
