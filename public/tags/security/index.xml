@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on Zach Stagers</title>
+    <link>https://www.zachstagers.co.uk/tags/security/</link>
+    <description>Recent content in Security on Zach Stagers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 13 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Data Lake ACL Introduction</title>
+      <link>https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/</guid>
+      <description>Introduction to ACL&amp;rsquo;s Access Control Lists (ACLs) offer low-level control of access to the folders within your Azure Data Lake, whilst Role-Based Access Control (RBAC) offers high-level control to the entire lake.
+RBAC vs ACL
+The ACL permissions on offer are:
+ Read - Grants read access to files and folders (i.e. able to see the contents). Write - Grants write access to files and folders. Execute - Grants&amp;hellip; execute.</description>
+    </item>
+    
+  </channel>
+</rss>

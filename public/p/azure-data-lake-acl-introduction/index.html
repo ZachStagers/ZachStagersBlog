@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Giving an introductory overview to securing an Azure Data Lake via ACL&#39;s and answering the question - &#34;What is the Mask ACL for?&#34;'><title>Azure Data Lake ACL Introduction</title>
+
+<link rel='canonical' href='https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Azure Data Lake ACL Introduction'>
+<meta property='og:description' content='Giving an introductory overview to securing an Azure Data Lake via ACL&#39;s and answering the question - &#34;What is the Mask ACL for?&#34;'>
+<meta property='og:url' content='https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/'>
+<meta property='og:site_name' content='Zach Stagers'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Azure' /><meta property='article:tag' content='Data Lake' /><meta property='article:tag' content='Security' /><meta property='article:published_time' content='2021-08-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-08-13T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/banner_azure_datalake_acl.JPG' />
+<meta name="twitter:site" content="@ZachStagers">
+    <meta name="twitter:creator" content="@ZachStagers"><meta name="twitter:title" content="Azure Data Lake ACL Introduction">
+<meta name="twitter:description" content="Giving an introductory overview to securing an Azure Data Lake via ACL&#39;s and answering the question - &#34;What is the Mask ACL for?&#34;"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/banner_azure_datalake_acl.JPG' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-204933390-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </head>
+    <body class="
+    article-page 
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        on-phone--column extended
+    
+">
+    
+        <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub35248a3a3ee8b5868e42fcef031f48e_18677_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+            
+        
+        <h1 class="site-name"><a href="https://www.zachstagers.co.uk/">Zach Stagers</a></h1>
+        <h2 class="site-description">Data Enthusiast</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about-me/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About Me</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/azure-data-lake-acl-introduction/">
+                <img src="/p/azure-data-lake-acl-introduction/banner_azure_datalake_acl.JPG"
+                        
+                        width="1500" 
+                        height="704" 
+                        loading="lazy"
+                        alt="Featured image of post Azure Data Lake ACL Introduction" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/p/azure-data-lake-acl-introduction/">Azure Data Lake ACL Introduction</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Giving an introductory overview to securing an Azure Data Lake via ACL&#39;s and answering the question - &#34;What is the Mask ACL for?&#34;
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2021-08-13</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 min read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h3 id="introduction-to-acls">Introduction to ACL&rsquo;s</h3>
+<p>Access Control Lists (ACLs) offer low-level control of access to the folders within your Azure Data Lake, whilst Role-Based Access Control (RBAC) offers high-level control to the entire lake.</p>
+<p><figure style="flex-grow: 300; flex-basis: 720px">
+		<a href="/p/azure-data-lake-acl-introduction/datalake_rbac_acl.JPG" data-size="1000x333"><img src="/p/azure-data-lake-acl-introduction/datalake_rbac_acl.JPG"
+				
+				width="1000"
+				height="333"
+				loading="lazy"
+				alt="RBAC vs ACL">
+		</a>
+		
+		<figcaption>RBAC vs ACL</figcaption>
+		
+	</figure></p>
+<p>The ACL permissions on offer are:</p>
+<ul>
+<li><strong>Read</strong> - Grants read access to files and folders (i.e. able to see the contents).</li>
+<li><strong>Write</strong> - Grants write access to files and folders.</li>
+<li><strong>Execute</strong> - Grants&hellip; execute. What this actually means is the user is able to navigate through the folder. A user must have execute assigned to the entire hierarchy above the folder they have read and/or write access to. Whilst in the portal you can assign this to files, it doesn&rsquo;t do anything.</li>
+</ul>
+<p>As well as setting access explicitly to a folder, defaults can be set at any level to inherit permissions to <em>newly created</em> sub folders and files, but note that these <em>do not</em> apply to folders and files which already exist.</p>
+<p>Below is a visualisation of a simple folder structure with the minimum ACL&rsquo;s required at each level to read data from &ldquo;File 1&rdquo;, whilst granting no access to &ldquo;File 2&rdquo;. Although this depicts the minimum permissions required to get to a single file, in reality you&rsquo;d likely elevate the Read permission to &ldquo;Sub Folder 1&rdquo; as a default permission, therefore allowing it to inherit down to all files and folders listed underneath it.</p>
+<p><figure style="flex-grow: 175; flex-basis: 420px">
+		<a href="/p/azure-data-lake-acl-introduction/datalake_acl_example.JPG" data-size="905x516"><img src="/p/azure-data-lake-acl-introduction/datalake_acl_example.JPG"
+				
+				width="905"
+				height="516"
+				loading="lazy"
+				alt="Data Lake ACL Example">
+		</a>
+		
+		<figcaption>Data Lake ACL Example</figcaption>
+		
+	</figure></p>
+<h3 id="testing-acls">Testing ACL&rsquo;s</h3>
+<p>There are a few things to be mindful of when testing with ACL&rsquo;s:</p>
+<ul>
+<li>Folder names are case sensitive.</li>
+<li>You need to connect to the lake using the Data Lake Storage end point - <code>https://&lt;lakename&gt;.dfs.core.windows.net/&lt;container&gt;/&lt;folders&gt;</code></li>
+<li>If testing via storage explorer, connect to the lake using the &lsquo;ADLS Gen2 container or directory&rsquo; option.</li>
+</ul>
+<h3 id="the-mask-acl">The Mask ACL</h3>
+<p>When managing ACL&rsquo;s, there&rsquo;s a button to Add principal, which allows you to select and add a user or group to assign ACL permissions to. There&rsquo;s also a button to Add mask, and this defines an override of the effective permissions for named users and groups.</p>
+<p>In the below screenshot, I&rsquo;ve added a mask and removed all permissions. Next to my Zach Stagers named user with Execute permissions you see a warning symbol. If you hover over the warning, it&rsquo;ll say &ldquo;The following access permissions are beyond the bounds of the mask: Execute&rdquo;. This is just highlighting to you that although Zach Stagers has Execute, it won&rsquo;t be effective because the Mask has disabled Execute permissions for all users.</p>
+<p><figure style="flex-grow: 185; flex-basis: 446px">
+		<a href="/p/azure-data-lake-acl-introduction/manage_acl_mask.JPG" data-size="688x370"><img src="/p/azure-data-lake-acl-introduction/manage_acl_mask.JPG"
+				
+				width="688"
+				height="370"
+				loading="lazy"
+				alt="Manage ACL Screen with a mask applied">
+		</a>
+		
+		<figcaption>Manage ACL Screen with a mask applied</figcaption>
+		
+	</figure></p>
+<p>You might use this in scenarios where someone has put something sensitive or something they shouldn&rsquo;t in a folder in the lake and you want an admin to be able to go in and remove it whilst restricting access for everyone else. This is a much easier method than removing all of your assigned ACL&rsquo;s and then having to readd them.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/azure/">Azure</a>
+        
+            <a href="/tags/data-lake/">Data Lake</a>
+        
+            <a href="/tags/security/">Security</a>
+        
+    </section>
+
+        <section class="article-tags">
+        <a href="https://twitter.com/ZachStagers" target="_blank"><img src="../../../../../Twitter_h16.png" alt="Twitter"></a>
+        <a href="https://www.linkedin.com/in/zachstagers/" target="_blank"><img src="../../../../../LinkedIn_h16.png" alt="LinkedIn"></a>
+        <a href="https://ko-fi.com/zachstagers" target="_blank"><img src="../../../../../KoFi_h16.png" alt="KoFi"></a>
+        <a href="https://sessionize.com/zach-stagers" target="_blank"><img src="../../../../../Sessionize_h16.png" alt="Sessionize"></a>
+        <a href="https://github.com/ZachStagers" target="_blank"><img src="../../../../../GitHub_h16.png" alt="GitHub"></a>
+    </section>
+    
+
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2021 Zach Stagers
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.0.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

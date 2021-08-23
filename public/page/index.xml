@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on Zach Stagers</title>
+    <link>https://www.zachstagers.co.uk/page/</link>
+    <description>Recent content in Pages on Zach Stagers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://www.zachstagers.co.uk/page/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Me</title>
+      <link>https://www.zachstagers.co.uk/about-me/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/about-me/</guid>
+      <description>My Career I&amp;rsquo;ve been working with data platforms and related technologies since 2008 and have touched everything from SQL Server 2000 through to ultramodern Data Lakehouses using Databricks in Azure.
+My day job as a Principal Consultant with Advancing Analytics is an extremely diverse role, and covers many subject areas and technologies. We predominantly focus on data engineering and data science projects, typically delivering data lakes and python, instead of servers and SQL&amp;hellip; Although I often tell people SQL was my first true love.</description>
+    </item>
+    
+    <item>
+      <title>Archives</title>
+      <link>https://www.zachstagers.co.uk/archives/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/archives/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Search</title>
+      <link>https://www.zachstagers.co.uk/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/search/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

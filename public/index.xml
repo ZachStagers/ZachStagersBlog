@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Zach Stagers</title>
+        <link>https://www.zachstagers.co.uk/</link>
+        <description>Recent content on Zach Stagers</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Fri, 13 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Azure Data Lake ACL Introduction</title>
+        <link>https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/</link>
+        <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/</guid>
+        <description>&lt;img src="https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/banner_azure_datalake_acl.JPG" alt="Featured image of post Azure Data Lake ACL Introduction" /&gt;&lt;h3 id=&#34;introduction-to-acls&#34;&gt;Introduction to ACL&amp;rsquo;s&lt;/h3&gt;
+&lt;p&gt;Access Control Lists (ACLs) offer low-level control of access to the folders within your Azure Data Lake, whilst Role-Based Access Control (RBAC) offers high-level control to the entire lake.&lt;/p&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 300; flex-basis: 720px&#34;&gt;
+		&lt;a href=&#34;https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/datalake_rbac_acl.JPG&#34; data-size=&#34;1000x333&#34;&gt;&lt;img src=&#34;https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/datalake_rbac_acl.JPG&#34;
+				
+				width=&#34;1000&#34;
+				height=&#34;333&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;RBAC vs ACL&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;RBAC vs ACL&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;The ACL permissions on offer are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Read&lt;/strong&gt; - Grants read access to files and folders (i.e. able to see the contents).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Write&lt;/strong&gt; - Grants write access to files and folders.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Execute&lt;/strong&gt; - Grants&amp;hellip; execute. What this actually means is the user is able to navigate through the folder. A user must have execute assigned to the entire hierarchy above the folder they have read and/or write access to. Whilst in the portal you can assign this to files, it doesn&amp;rsquo;t do anything.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As well as setting access explicitly to a folder, defaults can be set at any level to inherit permissions to &lt;em&gt;newly created&lt;/em&gt; sub folders and files, but note that these &lt;em&gt;do not&lt;/em&gt; apply to folders and files which already exist.&lt;/p&gt;
+&lt;p&gt;Below is a visualisation of a simple folder structure with the minimum ACL&amp;rsquo;s required at each level to read data from &amp;ldquo;File 1&amp;rdquo;, whilst granting no access to &amp;ldquo;File 2&amp;rdquo;. Although this depicts the minimum permissions required to get to a single file, in reality you&amp;rsquo;d likely elevate the Read permission to &amp;ldquo;Sub Folder 1&amp;rdquo; as a default permission, therefore allowing it to inherit down to all files and folders listed underneath it.&lt;/p&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 175; flex-basis: 420px&#34;&gt;
+		&lt;a href=&#34;https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/datalake_acl_example.JPG&#34; data-size=&#34;905x516&#34;&gt;&lt;img src=&#34;https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/datalake_acl_example.JPG&#34;
+				
+				width=&#34;905&#34;
+				height=&#34;516&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;Data Lake ACL Example&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;Data Lake ACL Example&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&#34;testing-acls&#34;&gt;Testing ACL&amp;rsquo;s&lt;/h3&gt;
+&lt;p&gt;There are a few things to be mindful of when testing with ACL&amp;rsquo;s:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Folder names are case sensitive.&lt;/li&gt;
+&lt;li&gt;You need to connect to the lake using the Data Lake Storage end point - &lt;code&gt;https://&amp;lt;lakename&amp;gt;.dfs.core.windows.net/&amp;lt;container&amp;gt;/&amp;lt;folders&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;If testing via storage explorer, connect to the lake using the &amp;lsquo;ADLS Gen2 container or directory&amp;rsquo; option.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;the-mask-acl&#34;&gt;The Mask ACL&lt;/h3&gt;
+&lt;p&gt;When managing ACL&amp;rsquo;s, there&amp;rsquo;s a button to Add principal, which allows you to select and add a user or group to assign ACL permissions to. There&amp;rsquo;s also a button to Add mask, and this defines an override of the effective permissions for named users and groups.&lt;/p&gt;
+&lt;p&gt;In the below screenshot, I&amp;rsquo;ve added a mask and removed all permissions. Next to my Zach Stagers named user with Execute permissions you see a warning symbol. If you hover over the warning, it&amp;rsquo;ll say &amp;ldquo;The following access permissions are beyond the bounds of the mask: Execute&amp;rdquo;. This is just highlighting to you that although Zach Stagers has Execute, it won&amp;rsquo;t be effective because the Mask has disabled Execute permissions for all users.&lt;/p&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 185; flex-basis: 446px&#34;&gt;
+		&lt;a href=&#34;https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/manage_acl_mask.JPG&#34; data-size=&#34;688x370&#34;&gt;&lt;img src=&#34;https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/manage_acl_mask.JPG&#34;
+				
+				width=&#34;688&#34;
+				height=&#34;370&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;Manage ACL Screen with a mask applied&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;Manage ACL Screen with a mask applied&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;You might use this in scenarios where someone has put something sensitive or something they shouldn&amp;rsquo;t in a folder in the lake and you want an admin to be able to go in and remove it whilst restricting access for everyone else. This is a much easier method than removing all of your assigned ACL&amp;rsquo;s and then having to readd them.&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

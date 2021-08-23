@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Zach Stagers</title>
+    <link>https://www.zachstagers.co.uk/tags/</link>
+    <description>Recent content in Tags on Zach Stagers</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 13 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure</title>
+      <link>https://www.zachstagers.co.uk/tags/azure/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/azure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Lake</title>
+      <link>https://www.zachstagers.co.uk/tags/data-lake/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/data-lake/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>https://www.zachstagers.co.uk/tags/security/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/security/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
