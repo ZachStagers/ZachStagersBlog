@@ -28,8 +28,6 @@ Currently I live in the south coast of England, and away from work I spend a gre
 
 I also thoroughly enjoy cooking (and eating), am a big sports fan, love to travel, and watch lots of film & television.
 
-
-
 ### Get in touch
 
 You can get in touch or connect with me via any of these...
