@@ -1,1 +1,5 @@
-<img src={{ .Get 0 }} alt={{ .Get 1}} style="float: {{ .Get 2}};" title="{{ .Get 1}}">
+{{ $src := (.Get 0) }} <!-- Path to the image file -->
+{{ $title := (.Get 1) }} <!-- Alt and Title of the image -->
+{{ $style := (.Get 2) }} <!-- Styling to be applied to the image -->
+
+<img src={{ $src }} alt={{ $title }} title="{{ $title }}" style="float: {{ $style }}">
