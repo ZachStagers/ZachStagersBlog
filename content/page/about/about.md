@@ -22,15 +22,15 @@ My day job as a Principal Consultant with [Advancing Analytics](https://www.adva
 
 My intention with this site is to share my technical findings, to serve as a catalog of some of the things I've worked on, and to contribute to the fantastic data communities... and as a reminder to myself of how to fix tricky problems I've faced before in my career! 
 
-### Offline
+### Offline 
+
+{{< images "../page/about/zach_stagers_about1.jpg" "Zach Stagers Great South Run 2019" "right" >}}
 
 I currently live in the south coast of England, and away from work I spend a great deal of time out and about with my camera, typically trying to capture images of landscapes or animals. The banner images for my posts are my own photographs - trying to find some relevance between a post and picture can be tricky! If you'd care to, you can see more of my photographs [here](https://www.istockphoto.com/portfolio/ZachStagers).
 
 I also thoroughly enjoy cooking (and eating), am a big sports fan, love to travel, and watch lots of film & television.
 
-![Me after the Great South Run 2019](page/about/zach_stagers_about1.jpg) 
-
-This is me, just after the Great South Run 2019!
+To the right is me, just after the Great South Run 2019!
 
 ### Get in touch
 
