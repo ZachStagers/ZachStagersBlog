@@ -7,7 +7,6 @@ tags:
     - "Azure"
     - "Data Lake"
     - "Security"
-draft: false
 image: banner_azure_datalake_acl.jpg
 ---
 

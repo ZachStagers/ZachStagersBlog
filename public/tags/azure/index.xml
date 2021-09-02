@@ -6,7 +6,17 @@
     <description>Recent content in Azure on Zach Stagers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 13 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Connect Azure Databricks to a DevOps repo in a different tenancy</title>
+      <link>https://www.zachstagers.co.uk/p/connect-azure-databricks-to-a-devops-repo-in-a-different-tenancy/</link>
+      <pubDate>Wed, 01 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/p/connect-azure-databricks-to-a-devops-repo-in-a-different-tenancy/</guid>
+      <description>If you&amp;rsquo;re working with a large multi-tenancy organisation it&amp;rsquo;s possible the subscription your Databricks resource sits in is a different tenancy to the Azure DevOps hosting your repositories. This blog explains how to connect Databricks to a DevOps repository in that scenario.
+When trying to connect to DevOps in a seperate tenancy, you&amp;rsquo;ll receive the message Unable to parse credentials from Azure Active Directory account. Ensure Azure Devops account is connected to AAD.</description>
+    </item>
+    
     <item>
       <title>Azure Data Lake ACL Introduction</title>
       <link>https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/</link>

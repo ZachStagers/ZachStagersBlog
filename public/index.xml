@@ -6,7 +6,60 @@
         <description>Recent content on Zach Stagers</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 13 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 01 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Connect Azure Databricks to a DevOps repo in a different tenancy</title>
+        <link>https://www.zachstagers.co.uk/p/connect-azure-databricks-to-a-devops-repo-in-a-different-tenancy/</link>
+        <pubDate>Wed, 01 Sep 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.zachstagers.co.uk/p/connect-azure-databricks-to-a-devops-repo-in-a-different-tenancy/</guid>
+        <description>&lt;img src="https://www.zachstagers.co.uk/p/connect-azure-databricks-to-a-devops-repo-in-a-different-tenancy/banner_databricks_devops_access_token.JPG" alt="Featured image of post Connect Azure Databricks to a DevOps repo in a different tenancy" /&gt;&lt;p&gt;If you&amp;rsquo;re working with a large multi-tenancy organisation it&amp;rsquo;s possible the subscription your Databricks resource sits in is a different tenancy to the Azure DevOps hosting your repositories. This blog explains how to connect Databricks to a DevOps repository in that scenario.&lt;/p&gt;
+&lt;p&gt;When trying to connect to DevOps in a seperate tenancy, you&amp;rsquo;ll receive the message &lt;code&gt;Unable to parse credentials from Azure Active Directory account. Ensure Azure Devops account is connected to AAD.&lt;/code&gt; if you haven&amp;rsquo;t configured a Personal Access Token (PAT).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Go to dev.azure.com and login to the DevOps organisation containing the repository you&amp;rsquo;re trying to connect Databricks to.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Click the User Settings icon in the top right and go to Personal Access Tokens.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Click + New Token&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Fill in the Create a new personal access token form:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Give the token a sensible name, such as &amp;lsquo;Databricks Repo Token&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;Select the appropriate organisation&lt;/li&gt;
+&lt;li&gt;Set the expiration as required&lt;/li&gt;
+&lt;li&gt;The scope required &amp;lsquo;Full access&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;Press Create&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Copy the access token displayed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Go to your Databricks workspace.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Click the workspace name in the top right and choose User Settings&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Go to the Git Intergration tab at the top of the page.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Change the drop down to Azure DevOps Services (personal access token)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Populate the Git provider username or email address with the email address you use to log in to the DevOps organisation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Paste the token copied in step 5 into the Token box and press save.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;With that configured, you can now go back to Repos, select Add Repo, and clone the remote Git repo.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Azure Data Lake ACL Introduction</title>
         <link>https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/</link>
         <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
