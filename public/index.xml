@@ -6,7 +6,61 @@
         <description>Recent content on Zach Stagers</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 01 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 14 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Changing a Data Factory Integration Runtime Registration Key</title>
+        <link>https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/</link>
+        <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/</guid>
+        <description>&lt;img src="https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/banner_change_adf_ir.JPG" alt="Featured image of post Changing a Data Factory Integration Runtime Registration Key" /&gt;&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;When you&amp;rsquo;ve installed an integration runtime (IR) and connected it to an Azure Data Factory (ADF), it isn&amp;rsquo;t exactly obvious how you change which Data Factory that IR is connected to. This short blog talks you through the process of updating an IR&amp;rsquo;s connection.&lt;/p&gt;
+&lt;h3 id=&#34;steps-to-change-the-irs-key&#34;&gt;Steps to change the IR&amp;rsquo;s Key&lt;/h3&gt;
+&lt;p&gt;Firstly, confirm the IR is in fact already registered to a Data Factory. Open the Integration Runtime Configuration Manager and you should see a green tick and &amp;lsquo;Self-hosted node is connected to the cloud service&amp;rsquo; with details of the ADF resource it&amp;rsquo;s connected to. If you don&amp;rsquo;t see this, and instead see a text box with &amp;lsquo;Register Integration Runtime (Self-hosted)&amp;rsquo; above it then your IR isn&amp;rsquo;t registered and you can skip all of the steps below and just paste the key into the registration box and hit go.&lt;/p&gt;
+&lt;p&gt;On to how to change which ADF resource your IR is registered with&amp;hellip;&lt;/p&gt;
+&lt;p&gt;When you install an IR, a PowerShell script is placed alongside the installation which can be used for this task. Note that your folder path may not be identical to mine, as your IR may not have been installed in the default location, or you may have a different IR version.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;From the machine hosting the IR, open the Windows PowerShell ISE as Administrator (right click, Run as admin&amp;hellip;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Within the ISE click File, Open, and navigating to: &lt;code&gt;C:\Program Files\Microsoft Integration Runtime\5.0\PowerShellScript&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open the &lt;code&gt;RegisterIntegrationRuntime.ps1&lt;/code&gt; PowerShell script.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Populate the parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;$gatewayKey&lt;/strong&gt; is the registration key of the new ADF resource you want to register the IR with. Remove the $throw so it&amp;rsquo;s just a string of the key.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;$IsRegisteringOnRemoteMachine&lt;/strong&gt; can be left as it&amp;rsquo;s default, false, as in step 1 we&amp;rsquo;re running this script from the machine hosting the IR.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;$NodeName&lt;/strong&gt; is the name that&amp;rsquo;ll appear in ADF when it&amp;rsquo;s registered. This is typically populated with the machine name hosting the IR.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Your script should look something like the screenshot below. Press run, it may take a minute or so, but once successful you&amp;rsquo;ll see the message &amp;lsquo;Integration Runtime registration is successful!&amp;rsquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Re-open the Integration Runtime Configuration Manager and confirm it is now registered with the new IR.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 464; flex-basis: 1115px&#34;&gt;
+		&lt;a href=&#34;https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/powershell_adf_integration_runtime_change.JPG&#34; data-size=&#34;1222x263&#34;&gt;&lt;img src=&#34;https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/powershell_adf_integration_runtime_change.JPG&#34;
+				
+				width=&#34;1222&#34;
+				height=&#34;263&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;RegisterIntegrationRuntime.ps1 parameters and success message.&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;RegisterIntegrationRuntime.ps1 parameters and success message.&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;If you get an error saying &lt;code&gt;C:\Program Files\Microsoft Integration Runtime\5.0\PowerShellScript\RegisterIntegrationRuntime.ps1 cannot be loaded. The contents of file C:\Program Files\Microsoft Integration Runtime\5.0\PowerShellScript\RegisterIntegrationRuntime.ps1 might have been changed by an unauthorized user or process, because the hash of the file does not match the hash stored in the digital signature. The script cannot run on the specified system. For more information, run Get-Help about_Signing..&lt;/code&gt; then you may need to run &lt;code&gt;Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass&lt;/code&gt; before you can run the script.&lt;/p&gt;
+&lt;h3 id=&#34;why-might-i-have-to-do-this&#34;&gt;Why might I have to do this?&lt;/h3&gt;
+&lt;p&gt;To give a bit of context to those who&amp;rsquo;re simply hosting an IR inside a network for someone else to use, you might need to undertake this process if significant changes have occurred in the Azure environment using the IR. For example, they may be migrating to a different tenancy, subscription, or are setting up a different ADF IR implementation by linking all IR&amp;rsquo;s to a single ADF and sharing and managing them from there. It should be quite rare once in production that this needs to be done.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Connect Azure Databricks to a DevOps repo in a different tenancy</title>
         <link>https://www.zachstagers.co.uk/p/connect-azure-databricks-to-a-devops-repo-in-a-different-tenancy/</link>
         <pubDate>Wed, 01 Sep 2021 00:00:00 +0000</pubDate>

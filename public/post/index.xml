@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Zach Stagers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Changing a Data Factory Integration Runtime Registration Key</title>
+      <link>https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/</link>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/</guid>
+      <description>Introduction When you&amp;rsquo;ve installed an integration runtime (IR) and connected it to an Azure Data Factory (ADF), it isn&amp;rsquo;t exactly obvious how you change which Data Factory that IR is connected to. This short blog talks you through the process of updating an IR&amp;rsquo;s connection.
+Steps to change the IR&amp;rsquo;s Key Firstly, confirm the IR is in fact already registered to a Data Factory. Open the Integration Runtime Configuration Manager and you should see a green tick and &amp;lsquo;Self-hosted node is connected to the cloud service&amp;rsquo; with details of the ADF resource it&amp;rsquo;s connected to.</description>
+    </item>
+    
     <item>
       <title>Connect Azure Databricks to a DevOps repo in a different tenancy</title>
       <link>https://www.zachstagers.co.uk/p/connect-azure-databricks-to-a-devops-repo-in-a-different-tenancy/</link>
