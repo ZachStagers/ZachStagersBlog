@@ -6,7 +6,51 @@
         <description>Recent content on Zach Stagers</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 14 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 02 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>SQLBits 2022</title>
+        <link>https://www.zachstagers.co.uk/p/sqlbits-2022/</link>
+        <pubDate>Wed, 02 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.zachstagers.co.uk/p/sqlbits-2022/</guid>
+        <description>&lt;img src="https://www.zachstagers.co.uk/p/sqlbits-2022/banner_sqlbits_2022.jpg" alt="Featured image of post SQLBits 2022" /&gt;&lt;p&gt;This years &lt;a class=&#34;link&#34; href=&#34;https://arcade.sqlbits.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;arcade-themed SQLBits&lt;/a&gt; is taking place between March 8th and 12th. I&amp;rsquo;ve been to SQLBits a number of times, it&amp;rsquo;s always great fun and I come away having learned a ton!&lt;/p&gt;
+&lt;p&gt;However, this year is a little different from me, as I&amp;rsquo;ll be presenting for the first time! I&amp;rsquo;m looking forward to it a lot, the last time I presented at a community event was on Azure Notebooks back in July 2018 (as seen in the banner image)!&lt;/p&gt;
+&lt;h3 id=&#34;pre-con-a-data-engineers-guide-to-synapse-analytics&#34;&gt;Pre-Con: A Data Engineers Guide to Synapse Analytics&lt;/h3&gt;
+&lt;p&gt;Alongside &lt;a class=&#34;link&#34; href=&#34;https://twitter.com/MrSiWhiteley&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Simon Whiteley&lt;/a&gt; and &lt;a class=&#34;link&#34; href=&#34;https://twitter.com/SQLStijn&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Stijn Wynants&lt;/a&gt;, I&amp;rsquo;ll be presenting a full day of Synapse training on Tuesday the 8th of March!&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;ll be an action packed day covering:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fundamentals of a lake based data platform&lt;/li&gt;
+&lt;li&gt;Patterns for ingesting data and orchestrating your data platform execution&lt;/li&gt;
+&lt;li&gt;How SQL Serverless Pools work and patterns for optimising performance and cost&lt;/li&gt;
+&lt;li&gt;Using Spark Pools to write dynamic workflows in Python&lt;/li&gt;
+&lt;li&gt;Utilizing Data Explorer Pools for deep exploration of logs, time series and other fast-moving unstructured data sources&lt;/li&gt;
+&lt;li&gt;Integrating Synapse directly with tools such as Azure Purview and CosmosDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can learn more from our &lt;a class=&#34;link&#34; href=&#34;https://sessionize.com/s/zach-stagers/a_data_engineers_guide_to_azure_syn/47796&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;sessionize page&lt;/a&gt;, or by watching our short promotional clip&lt;/p&gt;
+&lt;div class=&#34;video-wrapper&#34;&gt;
+    &lt;iframe loading=&#34;lazy&#34; 
+            src=&#34;https://www.youtube.com/embed/z0yZDcoGu-E&#34; 
+            allowfullscreen 
+            title=&#34;YouTube Video&#34;
+    &gt;
+    &lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;session-synapse-data-flows---will-citizen-etl-replace-the-data-engineer&#34;&gt;Session: Synapse Data Flows - Will Citizen ETL Replace the Data Engineer?&lt;/h3&gt;
+&lt;p&gt;As well as the pre-con, I&amp;rsquo;ll be presenting my own much shorter 20-minute session on Synapse Data Flows on Saturday the 12th of March, taking a look at how they measure up when compared to bespoke-built data platform. What&amp;rsquo;s the pipeline reusibility like? How well can you clean and standardize your data? What are they good at, and what are they bad at?&lt;/p&gt;
+&lt;p&gt;You can learn more from my &lt;a class=&#34;link&#34; href=&#34;https://sessionize.com/s/zach-stagers/synapse_data_flows_-_will_citizen_e/47797&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;sessionize page&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;other-sessions-to-look-out-for&#34;&gt;Other sessions to look out for&lt;/h3&gt;
+&lt;p&gt;Advancing Analytics will be at SQLBits in force. All together, we&amp;rsquo;re presenting 3 full day pre-conference training days and 11 general sessions! Find out what we&amp;rsquo;ll be presenting about and when via the &lt;a class=&#34;link&#34; href=&#34;https://www.advancinganalytics.co.uk/blog/2022/2/2/advancing-analytics-at-sqlbits-2022&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Advancing Analytics blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The full conference agenda can be found &lt;a class=&#34;link&#34; href=&#34;https://arcade.sqlbits.com/sessions/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Changing a Data Factory Integration Runtime Registration Key</title>
         <link>https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/</link>
         <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>

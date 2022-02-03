@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.zachstagers.co.uk/tags/community/</loc>
+    <lastmod>2022-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/post/</loc>
+    <lastmod>2022-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/p/sqlbits-2022/</loc>
+    <lastmod>2022-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/tags/synapse/</loc>
+    <lastmod>2022-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/tags/</loc>
+    <lastmod>2022-02-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/</loc>
+    <lastmod>2022-02-02T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.zachstagers.co.uk/tags/azure/</loc>
     <lastmod>2021-12-14T00:00:00+00:00</lastmod>
   </url><url>
@@ -14,16 +32,7 @@
     <loc>https://www.zachstagers.co.uk/tags/integration-runtime/</loc>
     <lastmod>2021-12-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.zachstagers.co.uk/post/</loc>
-    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.zachstagers.co.uk/tags/powershell/</loc>
-    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.zachstagers.co.uk/tags/</loc>
-    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.zachstagers.co.uk/</loc>
     <lastmod>2021-12-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.zachstagers.co.uk/p/connect-azure-databricks-to-a-devops-repo-in-a-different-tenancy/</loc>

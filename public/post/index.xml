@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Zach Stagers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SQLBits 2022</title>
+      <link>https://www.zachstagers.co.uk/p/sqlbits-2022/</link>
+      <pubDate>Wed, 02 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/p/sqlbits-2022/</guid>
+      <description>This years arcade-themed SQLBits is taking place between March 8th and 12th. I&amp;rsquo;ve been to SQLBits a number of times, it&amp;rsquo;s always great fun and I come away having learned a ton!
+However, this year is a little different from me, as I&amp;rsquo;ll be presenting for the first time! I&amp;rsquo;m looking forward to it a lot, the last time I presented at a community event was on Azure Notebooks back in July 2018 (as seen in the banner image)!</description>
+    </item>
+    
     <item>
       <title>Changing a Data Factory Integration Runtime Registration Key</title>
       <link>https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/</link>
