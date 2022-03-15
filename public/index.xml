@@ -99,7 +99,7 @@
 		&lt;figcaption&gt;RegisterIntegrationRuntime.ps1 parameters and success message.&lt;/figcaption&gt;
 		
 	&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;If you get either of the errors below, you may need to run saying &lt;code&gt;Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass&lt;/code&gt; before you can run the script:&lt;/p&gt;
+&lt;p&gt;If you get either of the errors below, you may need to run &lt;code&gt;Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass&lt;/code&gt; in PowerShell before you can run the script:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;C:\Program Files\Microsoft Integration Runtime\5.0\PowerShellScript\RegisterIntegrationRuntime.ps1 cannot be loaded. The contents of file C:\Program Files\Microsoft Integration Runtime\5.0\PowerShellScript\RegisterIntegrationRuntime.ps1 might have been changed by an unauthorized user or process, because the hash of the file does not match the hash stored in the digital signature. The script cannot run on the specified system. For more information, run Get-Help about_Signing..&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Integration Runtime registration has failed with below : Cannot open DIAHostService service on computer&lt;/code&gt;&lt;/li&gt;

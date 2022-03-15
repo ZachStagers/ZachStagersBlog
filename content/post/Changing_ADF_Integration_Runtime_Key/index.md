@@ -40,7 +40,7 @@ When you install an IR, a PowerShell script is placed alongside the installation
 
 ![RegisterIntegrationRuntime.ps1 parameters and success message.](powershell_adf_integration_runtime_change.jpg)
 
-If you get either of the errors below, you may need to run saying `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` before you can run the script:
+If you get either of the errors below, you may need to run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` in PowerShell before you can run the script:
 * `C:\Program Files\Microsoft Integration Runtime\5.0\PowerShellScript\RegisterIntegrationRuntime.ps1 cannot be loaded. The contents of file C:\Program Files\Microsoft Integration Runtime\5.0\PowerShellScript\RegisterIntegrationRuntime.ps1 might have been changed by an unauthorized user or process, because the hash of the file does not match the hash stored in the digital signature. The script cannot run on the specified system. For more information, run Get-Help about_Signing..` 
 * `Integration Runtime registration has failed with below : Cannot open DIAHostService service on computer`
 
