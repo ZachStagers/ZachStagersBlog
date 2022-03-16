@@ -2,7 +2,7 @@
 author: "Zach Stagers"
 title: "SQLBits 2022"
 date: "2022-02-02"
-description: "What me and the rest of the Advancing Analytics team will be up to at SQLBits 2022."
+#description: "What me and the rest of the Advancing Analytics team will be up to at SQLBits 2022."
 tags: 
     - "Community"
     - "Synapse"

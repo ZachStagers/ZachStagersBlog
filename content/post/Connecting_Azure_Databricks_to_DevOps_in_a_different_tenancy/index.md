@@ -2,7 +2,7 @@
 author: "Zach Stagers"
 title: "Connect Azure Databricks to a DevOps repo in a different tenancy"
 date: "2021-09-01"
-description: "How to connect Azure Databricks to a DevOps repository held within a separate tenancy using a Personal Access Token."
+#description: "How to connect Azure Databricks to a DevOps repository held within a separate tenancy using a Personal Access Token."
 tags: 
     - "Azure"
     - "Databricks"

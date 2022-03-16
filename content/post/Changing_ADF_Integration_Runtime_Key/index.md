@@ -2,7 +2,7 @@
 author: "Zach Stagers"
 title: "Changing a Data Factory Integration Runtime Registration Key"
 date: "2021-12-14"
-description: "Explaining the steps required to change which Data Factory an Integration Runtime is registered with."
+#description: "Explaining the steps required to change which Data Factory an Integration Runtime is registered with."
 tags: 
     - "Azure"
     - "Data Factory"
