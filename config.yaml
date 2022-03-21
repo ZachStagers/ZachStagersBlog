@@ -40,7 +40,7 @@ params:
 
     sidebar:
         emoji:
-        subtitle: Data Enthusiast
+        subtitle: Principal Data Engineering Consultant at Advancing Analytics with over 10 years experience working with Microsoft data platforms and related technologies.
         avatar:
             enabled: true
             local: true
@@ -129,7 +129,7 @@ params:
         toggle: true
 
         # Available values: auto, light, dark
-        default: light
+        default: dark
 
     imageProcessing:
         cover:

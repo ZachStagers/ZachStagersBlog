@@ -1,6 +1,16 @@
 <footer class="article-footer">
     {{ partial "article/components/tags" . }}
-    {{ partial "article/components/socials" . }}
+
+    {{ if (not .Date.IsZero) }}
+        <br/>
+        <br/>
+        <h2 class="article-title">Share this post</h2>
+        {{ partial "article/components/socialsSharing" . }}
+    {{ end }}
+
+    {{ if ( .Date.IsZero) }}
+        {{ partial "article/components/socialsContact" . }}
+    {{ end }}
 
     {{ if and (.Site.Params.article.license.enabled) (not (eq .Params.license false)) }}
     <section class="article-copyright">
