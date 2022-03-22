@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Introduction When you&amp;rsquo;ve installed an integration runtime (IR) and connected it to an Azure Data Factory (ADF), it isn&amp;rsquo;t exactly obvious how you change which Data Factory that IR is connected to. This short blog talks you through the process of updating an IR&amp;rsquo;s connection.
-Steps to change the IR&amp;rsquo;s Key Firstly, confirm the IR is in fact already registered to a Data Factory. Open the Integration Runtime Configuration Manager and you should see a green tick and &amp;lsquo;Self-hosted node is connected to the cloud service&amp;rsquo; with details of the ADF resource it&amp;rsquo;s connected to.'><title>Changing a Data Factory Integration Runtime Registration Key</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominently using Databricks to process data, but we&amp;rsquo;re using Synapse Serverless views to serve the data out in a couple different ways.
+This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement!
+There are several ways to configure access to your data from Synapse Serverless, and in this blog I&amp;rsquo;d like to step through some of the ways we&amp;rsquo;ve configured it, and what those configurations are good for.'><title>Azure Synapse Serverless Lake Access Patterns</title>
 
-<link rel='canonical' href='https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/'>
+<link rel='canonical' href='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/'>
 
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Changing a Data Factory Integration Runtime Registration Key'>
-<meta property='og:description' content='Introduction When you&amp;rsquo;ve installed an integration runtime (IR) and connected it to an Azure Data Factory (ADF), it isn&amp;rsquo;t exactly obvious how you change which Data Factory that IR is connected to. This short blog talks you through the process of updating an IR&amp;rsquo;s connection.
-Steps to change the IR&amp;rsquo;s Key Firstly, confirm the IR is in fact already registered to a Data Factory. Open the Integration Runtime Configuration Manager and you should see a green tick and &amp;lsquo;Self-hosted node is connected to the cloud service&amp;rsquo; with details of the ADF resource it&amp;rsquo;s connected to.'>
-<meta property='og:url' content='https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/'>
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Azure Synapse Serverless Lake Access Patterns'>
+<meta property='og:description' content='I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominently using Databricks to process data, but we&amp;rsquo;re using Synapse Serverless views to serve the data out in a couple different ways.
+This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement!
+There are several ways to configure access to your data from Synapse Serverless, and in this blog I&amp;rsquo;d like to step through some of the ways we&amp;rsquo;ve configured it, and what those configurations are good for.'>
+<meta property='og:url' content='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/'>
 <meta property='og:site_name' content='Zach Stagers'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Azure' /><meta property='article:tag' content='Data Factory' /><meta property='article:tag' content='Integration Runtime' /><meta property='article:tag' content='PowerShell' /><meta property='article:published_time' content='2021-12-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-12-14T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/banner_change_adf_ir.JPG' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Azure' /><meta property='article:tag' content='Synapse' /><meta property='article:tag' content='Data Lake' /><meta property='article:tag' content='Security' /><meta property='article:published_time' content='2022-03-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-03-21T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.zachstagers.co.uk/banner_azure_datalake_acl.jpg' />
 <meta name="twitter:site" content="@ZachStagers">
-    <meta name="twitter:creator" content="@ZachStagers"><meta name="twitter:title" content="Changing a Data Factory Integration Runtime Registration Key">
-<meta name="twitter:description" content="Introduction When you&amp;rsquo;ve installed an integration runtime (IR) and connected it to an Azure Data Factory (ADF), it isn&amp;rsquo;t exactly obvious how you change which Data Factory that IR is connected to. This short blog talks you through the process of updating an IR&amp;rsquo;s connection.
-Steps to change the IR&amp;rsquo;s Key Firstly, confirm the IR is in fact already registered to a Data Factory. Open the Integration Runtime Configuration Manager and you should see a green tick and &amp;lsquo;Self-hosted node is connected to the cloud service&amp;rsquo; with details of the ADF resource it&amp;rsquo;s connected to."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://www.zachstagers.co.uk/p/changing-a-data-factory-integration-runtime-registration-key/banner_change_adf_ir.JPG' />
+    <meta name="twitter:creator" content="@ZachStagers"><meta name="twitter:title" content="Azure Synapse Serverless Lake Access Patterns">
+<meta name="twitter:description" content="I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominently using Databricks to process data, but we&amp;rsquo;re using Synapse Serverless views to serve the data out in a couple different ways.
+This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement!
+There are several ways to configure access to your data from Synapse Serverless, and in this blog I&amp;rsquo;d like to step through some of the ways we&amp;rsquo;ve configured it, and what those configurations are good for."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.zachstagers.co.uk/banner_azure_datalake_acl.jpg' />
     <link rel="shortcut icon" href="favicon.ico" />
 
 <script type="application/javascript">
@@ -181,13 +184,9 @@ if (!doNotTrack) {
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/changing-a-data-factory-integration-runtime-registration-key/">
-                <img src="/p/changing-a-data-factory-integration-runtime-registration-key/banner_change_adf_ir.JPG"
-                        
-                        width="1500" 
-                        height="544" 
-                        loading="lazy"
-                        alt="Featured image of post Changing a Data Factory Integration Runtime Registration Key" />
+            <a href="/p/azure-synapse-serverless-lake-access-patterns/">
+                
+                    <img src="/banner_azure_datalake_acl.jpg" loading="lazy" alt="Featured image of post Azure Synapse Serverless Lake Access Patterns" />
                 
             </a>
         </div>
@@ -197,7 +196,7 @@ if (!doNotTrack) {
     
 
     <h2 class="article-title">
-        <a href="/p/changing-a-data-factory-integration-runtime-registration-key/">Changing a Data Factory Integration Runtime Registration Key</a>
+        <a href="/p/azure-synapse-serverless-lake-access-patterns/">Azure Synapse Serverless Lake Access Patterns</a>
     </h2>
 
     
@@ -215,7 +214,7 @@ if (!doNotTrack) {
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2021-12-14</time>
+                <time class="article-time--published">2022-03-21</time>
             </div>
         
 
@@ -240,56 +239,50 @@ if (!doNotTrack) {
 </header>
 
     <section class="article-content">
-    <h3 id="introduction">Introduction</h3>
-<p>When you&rsquo;ve installed an integration runtime (IR) and connected it to an Azure Data Factory (ADF), it isn&rsquo;t exactly obvious how you change which Data Factory that IR is connected to. This short blog talks you through the process of updating an IR&rsquo;s connection.</p>
-<h3 id="steps-to-change-the-irs-key">Steps to change the IR&rsquo;s Key</h3>
-<p>Firstly, confirm the IR is in fact already registered to a Data Factory. Open the Integration Runtime Configuration Manager and you should see a green tick and &lsquo;Self-hosted node is connected to the cloud service&rsquo; with details of the ADF resource it&rsquo;s connected to. If you don&rsquo;t see this, and instead see a text box with &lsquo;Register Integration Runtime (Self-hosted)&rsquo; above it then your IR isn&rsquo;t registered and you can skip all of the steps below and just paste the key into the registration box and hit go.</p>
-<p>On to how to change which ADF resource your IR is registered with&hellip;</p>
-<p>When you install an IR, a PowerShell script is placed alongside the installation which can be used for this task. Note that your folder path may not be identical to mine, as your IR may not have been installed in the default location, or you may have a different IR version.</p>
-<ol>
-<li>
-<p>From the machine hosting the IR, open the Windows PowerShell ISE as Administrator (right click, Run as admin&hellip;)</p>
-</li>
-<li>
-<p>Within the ISE click File, Open, and navigating to: <code>C:\Program Files\Microsoft Integration Runtime\5.0\PowerShellScript</code></p>
-</li>
-<li>
-<p>Open the <code>RegisterIntegrationRuntime.ps1</code> PowerShell script.</p>
-</li>
-<li>
-<p>Populate the parameters:</p>
+    <p>I&rsquo;ve been working with a client to build a large Data Lakehouse platform predominently using Databricks to process data, but we&rsquo;re using Synapse Serverless views to serve the data out in a couple different ways.</p>
+<p>This was the first time I&rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement!</p>
+<p>There are several ways to configure access to your data from Synapse Serverless, and in this blog I&rsquo;d like to step through some of the ways we&rsquo;ve configured it, and what those configurations are good for.</p>
+<h3 id="active-directory-ad-passthrough">Active Directory (AD) Passthrough</h3>
+<p>This is the default method of accessing data. If you simply open up your Synapse workspace and query your lake data using OpenRowset queries without creating and specifying a data source, your credentials will be passed down to the data lake layer to be authenticated.</p>
+<p>This means that in order for authentication to succeed, you need to have configured either RBAC or ACL&rsquo;s for your user account;</p>
 <ul>
-<li><strong>$gatewayKey</strong> is the registration key of the new ADF resource you want to register the IR with. Remove the $throw so it&rsquo;s just a string of the key.</li>
-<li><strong>$IsRegisteringOnRemoteMachine</strong> can be left as it&rsquo;s default, false, as in step 1 we&rsquo;re running this script from the machine hosting the IR.</li>
-<li><strong>$NodeName</strong> is the name that&rsquo;ll appear in ADF when it&rsquo;s registered. This is typically populated with the machine name hosting the IR.</li>
+<li>RBAC (Role Based Access Control) - Course grain access control. Whatever RBAC role is assigned will apply to all files and folders in the lake.</li>
+<li>ACL (Access Control Lists) - Fine grain access control. Grants access to specific files and folders.</li>
 </ul>
-</li>
-<li>
-<p>Your script should look something like the screenshot below. Press run, it may take a minute or so, but once successful you&rsquo;ll see the message &lsquo;Integration Runtime registration is successful!&rsquo;</p>
-</li>
-<li>
-<p>Re-open the Integration Runtime Configuration Manager and confirm it is now registered with the new IR.</p>
-</li>
-</ol>
-<p><figure style="flex-grow: 464; flex-basis: 1115px">
-		<a href="/p/changing-a-data-factory-integration-runtime-registration-key/powershell_adf_integration_runtime_change.JPG" data-size="1222x263"><img src="/p/changing-a-data-factory-integration-runtime-registration-key/powershell_adf_integration_runtime_change.JPG"
-				
-				width="1222"
-				height="263"
-				loading="lazy"
-				alt="RegisterIntegrationRuntime.ps1 parameters and success message.">
-		</a>
-		
-		<figcaption>RegisterIntegrationRuntime.ps1 parameters and success message.</figcaption>
-		
-	</figure></p>
-<p>If you get either of the errors below, you may need to run <code>Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass</code> in PowerShell before you can run the script:</p>
-<ul>
-<li><code>C:\Program Files\Microsoft Integration Runtime\5.0\PowerShellScript\RegisterIntegrationRuntime.ps1 cannot be loaded. The contents of file C:\Program Files\Microsoft Integration Runtime\5.0\PowerShellScript\RegisterIntegrationRuntime.ps1 might have been changed by an unauthorized user or process, because the hash of the file does not match the hash stored in the digital signature. The script cannot run on the specified system. For more information, run Get-Help about_Signing..</code></li>
-<li><code>Integration Runtime registration has failed with below : Cannot open DIAHostService service on computer</code></li>
-</ul>
-<h3 id="why-might-i-have-to-do-this">Why might I have to do this?</h3>
-<p>To give a bit of context to those who&rsquo;re simply hosting an IR inside a network for someone else to use, you might need to undertake this process if significant changes have occurred in the Azure environment using the IR. For example, they may be migrating to a different tenancy, subscription, or are setting up a different ADF IR implementation by linking all IR&rsquo;s to a single ADF and sharing and managing them from there. It should be quite rare once in production that this needs to be done.</p>
+<p>For a deeper look at ACL&rsquo;s, see a previous blog of mine here: <a class="link" href="https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/"  target="_blank" rel="noopener"
+    >Azure Data Lake ACL Introduction</a>.</p>
+<h3 id="synapse-managed-service-identity-msi---database-scoped">Synapse Managed Service Identity (MSI) - Database Scoped</h3>
+<p>If you don&rsquo;t want to configure ACL&rsquo;s or RBAC for your users, you can grant access via the Synapse managed service identity (MSI) using a database scoped credential. Managed identities are essentially a credential that is created alongside the resource which can be treated like any other active directory account - they typically have the same name as the resource they belong to. The MSI will still need to be granted lake level access (i.e. via RBAC or ACL, per the above section).</p>
+<p>To make use of the MSI, some set up is required. As we&rsquo;re creating a database scoped, you&rsquo;ll need to create a serverless database, then from within that database you need to create a master key to protect our credential.</p>
+<p>Next we create a database scoped credential specifying that the credential is based on the managed service identity.</p>
+<p>The final step is to create an external data source. This specifies our lake location via the data lake storage end point URL, and the credential to use to connect to that end point (in this case this will be our MSI credential). The location specified is the root of where access will be granted, meaning users accessing via this data source will have access to everything beneath the location specified.</p>
+<p>Putting all of this together, we end up with this script to enable lake access:</p>
+<pre><code>CREATE DATABASE SomeDatabase
+
+USE SomeDatabase
+
+CREATE MASTER KEY ENCRYPTION BY PASSWORD='&lt;SuperStrongPassw0rd&gt;'
+
+CREATE DATABASE SCOPED CREDENTIAL ManagedIdentityCredential
+WITH IDENTITY = 'MANAGED SERVICE IDENTITY'
+
+CREATE EXTERNAL DATA SOURCE DataLakeContainer
+WITH (
+      LOCATION = 'https://&lt;storageAccount&gt;.dfs.core.windows.net/container/',
+      CREDENTIAL = ManagedIdentityCredential
+     );
+
+</code></pre><p>To use the data source, we adapt our queries to include a data source parameter in our OpenRowset. Notice now that the BULK parameter, which would by default include the entire lake path, now only needs the path down from the location specified in our data source.</p>
+<pre><code>SELECT
+    TOP 100 *
+FROM
+    OPENROWSET(
+        BULK '/folder/deltaTable',
+        FORMAT = 'DELTA',
+        DATA_SOURCE = 'DataLakeContainer'
+    ) AS [result]
+</code></pre><p>Users can now query their little hearts out, without having any direct access to the lake themselves.</p>
+<p>To further abstract access away, a set of views can be built on top of the data source, and users can be granted access to those views only.</p>
 
 </section>
 
@@ -300,11 +293,11 @@ if (!doNotTrack) {
         
             <a href="/tags/azure/">Azure</a>
         
-            <a href="/tags/data-factory/">Data Factory</a>
+            <a href="/tags/synapse/">Synapse</a>
         
-            <a href="/tags/integration-runtime/">Integration Runtime</a>
+            <a href="/tags/data-lake/">Data Lake</a>
         
-            <a href="/tags/powershell/">PowerShell</a>
+            <a href="/tags/security/">Security</a>
         
     </section>
 
@@ -314,15 +307,15 @@ if (!doNotTrack) {
         <br/>
         <h2 class="article-title">Share this post</h2>
             <section class="article-tags">
-        <a href="https://twitter.com/intent/tweet?text=Changing%20a%20Data%20Factory%20Integration%20Runtime%20Registration%20Key by @ZachStagers - https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fchanging-a-data-factory-integration-runtime-registration-key%2f" target="_blank">
+        <a href="https://twitter.com/intent/tweet?text=Azure%20Synapse%20Serverless%20Lake%20Access%20Patterns by @ZachStagers - https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fazure-synapse-serverless-lake-access-patterns%2f" target="_blank">
             <img src="../../../../../Twitter_h16.png" alt="Twitter">
         </a>
         
-        <a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fchanging-a-data-factory-integration-runtime-registration-key%2f&title=Changing%20a%20Data%20Factory%20Integration%20Runtime%20Registration%20Key&summary=Changing%20a%20Data%20Factory%20Integration%20Runtime%20Registration%20Key&source=www.zachstagers.co.uk" target="_blank">
+        <a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fazure-synapse-serverless-lake-access-patterns%2f&title=Azure%20Synapse%20Serverless%20Lake%20Access%20Patterns&summary=Azure%20Synapse%20Serverless%20Lake%20Access%20Patterns&source=www.zachstagers.co.uk" target="_blank">
             <img src="../../../../../LinkedIn_h16.png" alt="LinkedIn">
         </a>
         
-        <a href="mailto:?subject=Changing%20a%20Data%20Factory%20Integration%20Runtime%20Registration%20Key&amp;body=I thought you might like this post by Zach Stagers; https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fchanging-a-data-factory-integration-runtime-registration-key%2f" target="_blank">
+        <a href="mailto:?subject=Azure%20Synapse%20Serverless%20Lake%20Access%20Patterns&amp;body=I thought you might like this post by Zach Stagers; https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fazure-synapse-serverless-lake-access-patterns%2f" target="_blank">
             <img src="../../../../../Email_h16.png" alt="Email">
         </a>
     </section>
@@ -338,6 +331,35 @@ if (!doNotTrack) {
 
     <aside class="related-contents--wrapper">
     
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/p/azure-data-lake-acl-introduction/">
+        
+        
+            <div class="article-image">
+                <img src="/p/azure-data-lake-acl-introduction/_hua693847f74910ec6474196f983f2089f_329142_3a983b42f2bd44a29c01e338794fbd51.JPG" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-vUCbJCFiR7yWHAToG17f2Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Azure Data Lake ACL Introduction</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
     
 </aside>
 

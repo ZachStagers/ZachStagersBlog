@@ -45,11 +45,9 @@
 
     <br />
 
-    {{ if (not .Date.IsZero) }}
+    {{ if .Summary }}
     <h3 class="article-subtitle">
-        {{ .Summary }} <a href="{{ .RelPermalink }}">
-             Read More >
-        </a>
+        {{ .Summary }} <a href="{{ .RelPermalink }}"> Read More > </a>
     </h3>
     {{ end }}
 

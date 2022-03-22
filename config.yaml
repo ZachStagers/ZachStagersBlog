@@ -40,7 +40,7 @@ params:
 
     sidebar:
         emoji:
-        subtitle: Principal Data Engineering Consultant at Advancing Analytics with over 10 years experience working with Microsoft data platforms and related technologies.
+        subtitle: Principal Data Engineering Consultant at Advancing Analytics with over 10 years experience working with Microsoft data platforms.
         avatar:
             enabled: true
             local: true
