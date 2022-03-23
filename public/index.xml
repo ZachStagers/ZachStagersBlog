@@ -6,7 +6,81 @@
         <description>Recent content on Zach Stagers</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 02 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 23 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Azure Synapse Serverless Lake Access Patterns</title>
+        <link>https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/</link>
+        <pubDate>Wed, 23 Mar 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/</guid>
+        <description>&lt;img src="https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/banner_azure_synapse_serverless_lake_access_patterns.jpg" alt="Featured image of post Azure Synapse Serverless Lake Access Patterns" /&gt;&lt;p&gt;I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.&lt;/p&gt;
+&lt;p&gt;This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&amp;rsquo;ve linked to at the bottom of this post.&lt;/p&gt;
+&lt;p&gt;The crux of it is that there&amp;rsquo;s several ways to configure access to your lake data from Synapse Serverless, and in this blog I&amp;rsquo;d like to step through the ways we&amp;rsquo;ve configured it, and what those configurations are good for. This post does not speak to network security, although I have provided a link to the Azure Synapse Network Security white paper at the end.&lt;/p&gt;
+&lt;h3 id=&#34;active-directory-ad-passthrough-aka-user-identity&#34;&gt;Active Directory (AD) Passthrough (a.k.a User Identity)&lt;/h3&gt;
+&lt;p&gt;This is the default method of accessing data. If you simply open up your Synapse workspace and query your lake data using OpenRowset queries without creating and specifying a data source, your credentials will be passed down to the data lake layer to be authenticated.&lt;/p&gt;
+&lt;p&gt;This means that in order for authentication to succeed, you need to have configured either RBAC or ACL&amp;rsquo;s for your user account;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RBAC (Role Based Access Control) - Course grain access control. Whatever RBAC role is assigned will apply to all files and folders in the lake.&lt;/li&gt;
+&lt;li&gt;ACL (Access Control Lists) - Fine grain access control. Grants access to specific files and folders.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For a deeper look at ACL&amp;rsquo;s, see a previous blog of mine here: &lt;a class=&#34;link&#34; href=&#34;https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Azure Data Lake ACL Introduction&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This option is great in two different ways, depending on which security protocol you use:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For allowing analysts free reign into the lake (RBAC).&lt;/li&gt;
+&lt;li&gt;To have meticulous control over what people have access to (ACL).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;synapse-managed-service-identity-msi---database-scoped&#34;&gt;Synapse Managed Service Identity (MSI) - Database Scoped&lt;/h3&gt;
+&lt;p&gt;If you don&amp;rsquo;t want to configure ACL&amp;rsquo;s or RBAC for your users, you can grant access via the Synapse managed service identity (MSI) using a database scoped credential. Managed identities are essentially a credential that is created alongside the resource which can be treated like any other active directory account - they typically have the same name as the resource they belong to. The MSI will still need to be granted lake level access (i.e. via RBAC or ACL, per the above section).&lt;/p&gt;
+&lt;p&gt;To make use of the MSI, some set up is required. As we&amp;rsquo;re creating a database scoped, you&amp;rsquo;ll need to create a serverless database, then from within that database you need to create a master key to protect our credential.&lt;/p&gt;
+&lt;p&gt;Next we create a database scoped credential specifying that the credential is based on the managed service identity.&lt;/p&gt;
+&lt;p&gt;The final step is to create an external data source. This specifies our lake location via the data lake storage end point URL, and the credential to use to connect to that end point (in this case this will be our MSI credential). The location specified is the root of where access will be granted, meaning users accessing via this data source will have access to everything beneath the location specified.&lt;/p&gt;
+&lt;p&gt;Putting all of this together, we end up with this script to enable lake access:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CREATE DATABASE SomeDatabase
+
+USE SomeDatabase
+
+CREATE MASTER KEY ENCRYPTION BY PASSWORD=&#39;&amp;lt;SuperStrongPassw0rd&amp;gt;&#39;
+
+CREATE DATABASE SCOPED CREDENTIAL ManagedIdentityCredential
+WITH IDENTITY = &#39;MANAGED SERVICE IDENTITY&#39;
+
+CREATE EXTERNAL DATA SOURCE DataLakeContainer
+WITH (
+      LOCATION = &#39;https://&amp;lt;storageAccount&amp;gt;.dfs.core.windows.net/container/&#39;,
+      CREDENTIAL = ManagedIdentityCredential
+     );
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To use the data source, we adapt our queries to include a data source parameter in our OpenRowset. Notice now that the BULK parameter, which would by default include the entire lake path, now only needs the path down from the location specified in our data source.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SELECT
+    TOP 100 *
+FROM
+    OPENROWSET(
+        BULK &#39;/folder/deltaTable&#39;,
+        FORMAT = &#39;DELTA&#39;,
+        DATA_SOURCE = &#39;DataLakeContainer&#39;
+    ) AS [result]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This option is again good in multiple ways:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For allowing analysts free reign into the lake from a certain access point and below.&lt;/li&gt;
+&lt;li&gt;For developing a standard set of views which expose data to PowerBI.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;wrap-up&#34;&gt;Wrap Up&lt;/h3&gt;
+&lt;p&gt;Using both of these methods together gives us a powerful blend of control and access. We&amp;rsquo;re able to serve a standardised and trusted enterprise data model to PowerBI using the MSI method, and we&amp;rsquo;re able to control access for analysts to splash around in the lake building their own models and metrics.&lt;/p&gt;
+&lt;p&gt;This isn&amp;rsquo;t an exhaustive list of access methods - you could also use shared access signatures or service principals.&lt;/p&gt;
+&lt;p&gt;Check out some of the security documentation for yourself:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/on-demand-workspace-overview#security&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Serverless SQL pool in Azure Synapse Analytics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/develop-storage-files-storage-access-control?tabs=user-identity&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Control storage account access for serverless SQL pool in Azure Synapse Analytics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/resources-self-help-sql-on-demand#storage-access&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Self-help for serverless SQL pool&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/synapse-analytics/guidance/security-white-paper-network-security.md&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Azure Synapse Analytics security white paper: Network Security&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>SQLBits 2022</title>
         <link>https://www.zachstagers.co.uk/p/sqlbits-2022/</link>
         <pubDate>Wed, 02 Feb 2022 00:00:00 +0000</pubDate>

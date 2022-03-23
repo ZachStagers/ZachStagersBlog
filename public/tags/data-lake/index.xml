@@ -6,7 +6,17 @@
     <description>Recent content in Data Lake on Zach Stagers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 13 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/tags/data-lake/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/tags/data-lake/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Synapse Serverless Lake Access Patterns</title>
+      <link>https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/</link>
+      <pubDate>Wed, 23 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/</guid>
+      <description>I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.
+This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&amp;rsquo;ve linked to at the bottom of this post.</description>
+    </item>
+    
     <item>
       <title>Azure Data Lake ACL Introduction</title>
       <link>https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/</link>

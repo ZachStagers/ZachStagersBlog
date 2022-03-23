@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominently using Databricks to process data, but we&amp;rsquo;re using Synapse Serverless views to serve the data out in a couple different ways.
-This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement!
-There are several ways to configure access to your data from Synapse Serverless, and in this blog I&amp;rsquo;d like to step through some of the ways we&amp;rsquo;ve configured it, and what those configurations are good for.'><title>Azure Synapse Serverless Lake Access Patterns</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.
+This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&amp;rsquo;ve linked to at the bottom of this post.'><title>Azure Synapse Serverless Lake Access Patterns</title>
 
 <link rel='canonical' href='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Azure Synapse Serverless Lake Access Patterns'>
-<meta property='og:description' content='I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominently using Databricks to process data, but we&amp;rsquo;re using Synapse Serverless views to serve the data out in a couple different ways.
-This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement!
-There are several ways to configure access to your data from Synapse Serverless, and in this blog I&amp;rsquo;d like to step through some of the ways we&amp;rsquo;ve configured it, and what those configurations are good for.'>
+<meta property='og:description' content='I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.
+This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&amp;rsquo;ve linked to at the bottom of this post.'>
 <meta property='og:url' content='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/'>
 <meta property='og:site_name' content='Zach Stagers'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Azure' /><meta property='article:tag' content='Synapse' /><meta property='article:tag' content='Data Lake' /><meta property='article:tag' content='Security' /><meta property='article:published_time' content='2022-03-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-03-21T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.zachstagers.co.uk/banner_azure_datalake_acl.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Azure' /><meta property='article:tag' content='Synapse' /><meta property='article:tag' content='Data Lake' /><meta property='article:tag' content='Security' /><meta property='article:published_time' content='2022-03-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-03-23T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/banner_azure_synapse_serverless_lake_access_patterns.jpg' />
 <meta name="twitter:site" content="@ZachStagers">
     <meta name="twitter:creator" content="@ZachStagers"><meta name="twitter:title" content="Azure Synapse Serverless Lake Access Patterns">
-<meta name="twitter:description" content="I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominently using Databricks to process data, but we&amp;rsquo;re using Synapse Serverless views to serve the data out in a couple different ways.
-This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement!
-There are several ways to configure access to your data from Synapse Serverless, and in this blog I&amp;rsquo;d like to step through some of the ways we&amp;rsquo;ve configured it, and what those configurations are good for."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://www.zachstagers.co.uk/banner_azure_datalake_acl.jpg' />
+<meta name="twitter:description" content="I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.
+This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&amp;rsquo;ve linked to at the bottom of this post."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/banner_azure_synapse_serverless_lake_access_patterns.jpg' />
     <link rel="shortcut icon" href="favicon.ico" />
 
 <script type="application/javascript">
@@ -185,8 +182,12 @@ if (!doNotTrack) {
     <header class="article-header">
         <div class="article-image">
             <a href="/p/azure-synapse-serverless-lake-access-patterns/">
-                
-                    <img src="/banner_azure_datalake_acl.jpg" loading="lazy" alt="Featured image of post Azure Synapse Serverless Lake Access Patterns" />
+                <img src="/p/azure-synapse-serverless-lake-access-patterns/banner_azure_synapse_serverless_lake_access_patterns.jpg"
+                        
+                        width="1500" 
+                        height="704" 
+                        loading="lazy"
+                        alt="Featured image of post Azure Synapse Serverless Lake Access Patterns" />
                 
             </a>
         </div>
@@ -214,7 +215,7 @@ if (!doNotTrack) {
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2022-03-21</time>
+                <time class="article-time--published">2022-03-23</time>
             </div>
         
 
@@ -229,7 +230,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    3 min read
+                    4 min read
                 </time>
             </div>
         
@@ -239,10 +240,10 @@ if (!doNotTrack) {
 </header>
 
     <section class="article-content">
-    <p>I&rsquo;ve been working with a client to build a large Data Lakehouse platform predominently using Databricks to process data, but we&rsquo;re using Synapse Serverless views to serve the data out in a couple different ways.</p>
-<p>This was the first time I&rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement!</p>
-<p>There are several ways to configure access to your data from Synapse Serverless, and in this blog I&rsquo;d like to step through some of the ways we&rsquo;ve configured it, and what those configurations are good for.</p>
-<h3 id="active-directory-ad-passthrough">Active Directory (AD) Passthrough</h3>
+    <p>I&rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.</p>
+<p>This was the first time I&rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&rsquo;ve linked to at the bottom of this post.</p>
+<p>The crux of it is that there&rsquo;s several ways to configure access to your lake data from Synapse Serverless, and in this blog I&rsquo;d like to step through the ways we&rsquo;ve configured it, and what those configurations are good for. This post does not speak to network security, although I have provided a link to the Azure Synapse Network Security white paper at the end.</p>
+<h3 id="active-directory-ad-passthrough-aka-user-identity">Active Directory (AD) Passthrough (a.k.a User Identity)</h3>
 <p>This is the default method of accessing data. If you simply open up your Synapse workspace and query your lake data using OpenRowset queries without creating and specifying a data source, your credentials will be passed down to the data lake layer to be authenticated.</p>
 <p>This means that in order for authentication to succeed, you need to have configured either RBAC or ACL&rsquo;s for your user account;</p>
 <ul>
@@ -251,6 +252,11 @@ if (!doNotTrack) {
 </ul>
 <p>For a deeper look at ACL&rsquo;s, see a previous blog of mine here: <a class="link" href="https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/"  target="_blank" rel="noopener"
     >Azure Data Lake ACL Introduction</a>.</p>
+<p>This option is great in two different ways, depending on which security protocol you use:</p>
+<ul>
+<li>For allowing analysts free reign into the lake (RBAC).</li>
+<li>To have meticulous control over what people have access to (ACL).</li>
+</ul>
 <h3 id="synapse-managed-service-identity-msi---database-scoped">Synapse Managed Service Identity (MSI) - Database Scoped</h3>
 <p>If you don&rsquo;t want to configure ACL&rsquo;s or RBAC for your users, you can grant access via the Synapse managed service identity (MSI) using a database scoped credential. Managed identities are essentially a credential that is created alongside the resource which can be treated like any other active directory account - they typically have the same name as the resource they belong to. The MSI will still need to be granted lake level access (i.e. via RBAC or ACL, per the above section).</p>
 <p>To make use of the MSI, some set up is required. As we&rsquo;re creating a database scoped, you&rsquo;ll need to create a serverless database, then from within that database you need to create a master key to protect our credential.</p>
@@ -281,8 +287,25 @@ FROM
         FORMAT = 'DELTA',
         DATA_SOURCE = 'DataLakeContainer'
     ) AS [result]
-</code></pre><p>Users can now query their little hearts out, without having any direct access to the lake themselves.</p>
-<p>To further abstract access away, a set of views can be built on top of the data source, and users can be granted access to those views only.</p>
+</code></pre><p>This option is again good in multiple ways:</p>
+<ul>
+<li>For allowing analysts free reign into the lake from a certain access point and below.</li>
+<li>For developing a standard set of views which expose data to PowerBI.</li>
+</ul>
+<h3 id="wrap-up">Wrap Up</h3>
+<p>Using both of these methods together gives us a powerful blend of control and access. We&rsquo;re able to serve a standardised and trusted enterprise data model to PowerBI using the MSI method, and we&rsquo;re able to control access for analysts to splash around in the lake building their own models and metrics.</p>
+<p>This isn&rsquo;t an exhaustive list of access methods - you could also use shared access signatures or service principals.</p>
+<p>Check out some of the security documentation for yourself:</p>
+<ul>
+<li><a class="link" href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/on-demand-workspace-overview#security"  target="_blank" rel="noopener"
+    >Serverless SQL pool in Azure Synapse Analytics</a></li>
+<li><a class="link" href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/develop-storage-files-storage-access-control?tabs=user-identity"  target="_blank" rel="noopener"
+    >Control storage account access for serverless SQL pool in Azure Synapse Analytics</a></li>
+<li><a class="link" href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/resources-self-help-sql-on-demand#storage-access"  target="_blank" rel="noopener"
+    >Self-help for serverless SQL pool</a></li>
+<li><a class="link" href="https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/synapse-analytics/guidance/security-white-paper-network-security.md"  target="_blank" rel="noopener"
+    >Azure Synapse Analytics security white paper: Network Security</a></li>
+</ul>
 
 </section>
 

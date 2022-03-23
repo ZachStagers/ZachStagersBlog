@@ -1,24 +1,24 @@
 ---
 author: "Zach Stagers"
 title: "Azure Synapse Serverless Lake Access Patterns"
-date: "2022-03-21"
-# description: "Giving an introductory overview to securing an Azure Data Lake via ACL's and answering the question - \"What is the Mask ACL for?\""
+date: "2022-03-23"
+# description: ""
 tags: 
     - "Azure"
     - "Synapse"
     - "Data Lake"
     - "Security"
-image: banner_azure_datalake_acl.jpg
-draft: "true"
+image: banner_azure_synapse_serverless_lake_access_patterns.jpg
+draft: "false"
 ---
 
-I've been working with a client to build a large Data Lakehouse platform predominently using Databricks to process data, but we're using Synapse Serverless views to serve the data out in a couple different ways. 
+I've been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways. 
 
-This was the first time I'd properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement!
+This was the first time I'd properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I've linked to at the bottom of this post.
 
-There are several ways to configure access to your data from Synapse Serverless, and in this blog I'd like to step through some of the ways we've configured it, and what those configurations are good for.
+The crux of it is that there's several ways to configure access to your lake data from Synapse Serverless, and in this blog I'd like to step through the ways we've configured it, and what those configurations are good for. This post does not speak to network security, although I have provided a link to the Azure Synapse Network Security white paper at the end.
 
-### Active Directory (AD) Passthrough
+### Active Directory (AD) Passthrough (a.k.a User Identity)
 This is the default method of accessing data. If you simply open up your Synapse workspace and query your lake data using OpenRowset queries without creating and specifying a data source, your credentials will be passed down to the data lake layer to be authenticated.
 
 This means that in order for authentication to succeed, you need to have configured either RBAC or ACL's for your user account;
@@ -27,6 +27,10 @@ This means that in order for authentication to succeed, you need to have configu
 * ACL (Access Control Lists) - Fine grain access control. Grants access to specific files and folders.
 
 For a deeper look at ACL's, see a previous blog of mine here: [Azure Data Lake ACL Introduction](https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/).
+
+This option is great in two different ways, depending on which security protocol you use:
+* For allowing analysts free reign into the lake (RBAC).
+* To have meticulous control over what people have access to (ACL).
 
 ### Synapse Managed Service Identity (MSI) - Database Scoped
 If you don't want to configure ACL's or RBAC for your users, you can grant access via the Synapse managed service identity (MSI) using a database scoped credential. Managed identities are essentially a credential that is created alongside the resource which can be treated like any other active directory account - they typically have the same name as the resource they belong to. The MSI will still need to be granted lake level access (i.e. via RBAC or ACL, per the above section).
@@ -70,6 +74,18 @@ FROM
     ) AS [result]
 ```
 
-Users can now query their little hearts out, without having any direct access to the lake themselves.
+This option is again good in multiple ways:
+* For allowing analysts free reign into the lake from a certain access point and below.
+* For developing a standard set of views which expose data to PowerBI.
 
-To further abstract access away, a set of views can be built on top of the data source, and users can be granted access to those views only. 
+### Wrap Up
+Using both of these methods together gives us a powerful blend of control and access. We're able to serve a standardised and trusted enterprise data model to PowerBI using the MSI method, and we're able to control access for analysts to splash around in the lake building their own models and metrics.
+
+This isn't an exhaustive list of access methods - you could also use shared access signatures or service principals.
+
+Check out some of the security documentation for yourself:
+
+* [Serverless SQL pool in Azure Synapse Analytics](https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/on-demand-workspace-overview#security)
+* [Control storage account access for serverless SQL pool in Azure Synapse Analytics](https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/develop-storage-files-storage-access-control?tabs=user-identity)
+* [Self-help for serverless SQL pool](https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/resources-self-help-sql-on-demand#storage-access)
+* [Azure Synapse Analytics security white paper: Network Security](https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/synapse-analytics/guidance/security-white-paper-network-security.md)
