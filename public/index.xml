@@ -19,11 +19,10 @@
 &lt;p&gt;This is the default method of accessing data. If you simply open up your Synapse workspace and query your lake data using OpenRowset queries without creating and specifying a data source, your credentials will be passed down to the data lake layer to be authenticated.&lt;/p&gt;
 &lt;p&gt;This means that in order for authentication to succeed, you need to have configured either RBAC or ACL&amp;rsquo;s for your user account;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;RBAC (Role Based Access Control) - Course grain access control. Whatever RBAC role is assigned will apply to all files and folders in the lake.&lt;/li&gt;
-&lt;li&gt;ACL (Access Control Lists) - Fine grain access control. Grants access to specific files and folders.&lt;/li&gt;
+&lt;li&gt;RBAC (Role Based Access Control) - Course grain access control. Whatever RBAC role is assigned will apply to all files and folders in the lake. The role applied to permit access via Serverless must be one of the &amp;lsquo;Storage Blob Data ***&amp;rsquo; roles.&lt;/li&gt;
+&lt;li&gt;ACL (Access Control Lists) - Fine grain access control. Grants access to specific files and folders. For a deeper look at ACL&amp;rsquo;s, see a previous blog of mine here: &lt;a class=&#34;link&#34; href=&#34;https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Azure Data Lake ACL Introduction&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;For a deeper look at ACL&amp;rsquo;s, see a previous blog of mine here: &lt;a class=&#34;link&#34; href=&#34;https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Azure Data Lake ACL Introduction&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This option is great in two different ways, depending on which security protocol you use:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;For allowing analysts free reign into the lake (RBAC).&lt;/li&gt;

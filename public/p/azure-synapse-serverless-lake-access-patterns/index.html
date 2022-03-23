@@ -247,11 +247,10 @@ if (!doNotTrack) {
 <p>This is the default method of accessing data. If you simply open up your Synapse workspace and query your lake data using OpenRowset queries without creating and specifying a data source, your credentials will be passed down to the data lake layer to be authenticated.</p>
 <p>This means that in order for authentication to succeed, you need to have configured either RBAC or ACL&rsquo;s for your user account;</p>
 <ul>
-<li>RBAC (Role Based Access Control) - Course grain access control. Whatever RBAC role is assigned will apply to all files and folders in the lake.</li>
-<li>ACL (Access Control Lists) - Fine grain access control. Grants access to specific files and folders.</li>
+<li>RBAC (Role Based Access Control) - Course grain access control. Whatever RBAC role is assigned will apply to all files and folders in the lake. The role applied to permit access via Serverless must be one of the &lsquo;Storage Blob Data ***&rsquo; roles.</li>
+<li>ACL (Access Control Lists) - Fine grain access control. Grants access to specific files and folders. For a deeper look at ACL&rsquo;s, see a previous blog of mine here: <a class="link" href="https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/"  target="_blank" rel="noopener"
+    >Azure Data Lake ACL Introduction</a>.</li>
 </ul>
-<p>For a deeper look at ACL&rsquo;s, see a previous blog of mine here: <a class="link" href="https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/"  target="_blank" rel="noopener"
-    >Azure Data Lake ACL Introduction</a>.</p>
 <p>This option is great in two different ways, depending on which security protocol you use:</p>
 <ul>
 <li>For allowing analysts free reign into the lake (RBAC).</li>

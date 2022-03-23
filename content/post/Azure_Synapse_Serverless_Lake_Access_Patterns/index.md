@@ -23,10 +23,8 @@ This is the default method of accessing data. If you simply open up your Synapse
 
 This means that in order for authentication to succeed, you need to have configured either RBAC or ACL's for your user account;
 
-* RBAC (Role Based Access Control) - Course grain access control. Whatever RBAC role is assigned will apply to all files and folders in the lake.
-* ACL (Access Control Lists) - Fine grain access control. Grants access to specific files and folders.
-
-For a deeper look at ACL's, see a previous blog of mine here: [Azure Data Lake ACL Introduction](https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/).
+* RBAC (Role Based Access Control) - Course grain access control. Whatever RBAC role is assigned will apply to all files and folders in the lake. The role applied to permit access via Serverless must be one of the 'Storage Blob Data ***' roles.
+* ACL (Access Control Lists) - Fine grain access control. Grants access to specific files and folders. For a deeper look at ACL's, see a previous blog of mine here: [Azure Data Lake ACL Introduction](https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/).
 
 This option is great in two different ways, depending on which security protocol you use:
 * For allowing analysts free reign into the lake (RBAC).
