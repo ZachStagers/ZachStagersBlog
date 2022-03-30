@@ -6,11 +6,11 @@
     <description>Recent content in Tags on Zach Stagers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure</title>
       <link>https://www.zachstagers.co.uk/tags/azure/</link>
-      <pubDate>Wed, 23 Mar 2022 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 30 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>https://www.zachstagers.co.uk/tags/azure/</guid>
       <description></description>
@@ -19,9 +19,27 @@
     <item>
       <title>Data Lake</title>
       <link>https://www.zachstagers.co.uk/tags/data-lake/</link>
-      <pubDate>Wed, 23 Mar 2022 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 30 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>https://www.zachstagers.co.uk/tags/data-lake/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Serving</title>
+      <link>https://www.zachstagers.co.uk/tags/data-serving/</link>
+      <pubDate>Wed, 30 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/data-serving/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lakehouse</title>
+      <link>https://www.zachstagers.co.uk/tags/lakehouse/</link>
+      <pubDate>Wed, 30 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/lakehouse/</guid>
       <description></description>
     </item>
     

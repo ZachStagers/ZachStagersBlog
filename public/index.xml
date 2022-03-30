@@ -6,7 +6,54 @@
         <description>Recent content on Zach Stagers</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 23 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 30 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>What Makes a Good Lakehouse Serving Layer?</title>
+        <link>https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/</link>
+        <pubDate>Wed, 30 Mar 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/</guid>
+        <description>&lt;img src="https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/banner_what_makes_a_good_lakehouse_serving_layer.jpg" alt="Featured image of post What Makes a Good Lakehouse Serving Layer?" /&gt;&lt;p&gt;This post is a bit of an exploratory one, collecting some thoughts about features which combine to make a good data lakehouse serving layer, and the things to consider when choosing a resource to serve your data.&lt;/p&gt;
+&lt;p&gt;I do not intend for this post to act as a guide for choosing the right serving layer, but instead it&amp;rsquo;s an introduction to the subject and some things to watch out for as you identify which tool would be best for you.&lt;/p&gt;
+&lt;h3 id=&#34;what-is-a-serving-layer&#34;&gt;What is a serving layer?&lt;/h3&gt;
+&lt;p&gt;Simply put, a serving layer is a method of presenting data to users. Or put differently, it&amp;rsquo;s a tool through which users can access data.&lt;/p&gt;
+&lt;p&gt;But when you break that simple statement down, there&amp;rsquo;s a lot to think about! What data is being presented back, and who is it being presented to? How do users want to connect to the serving layer (assuming they have a choice)? And when they&amp;rsquo;ve connected, how do we ensure they only see the data they&amp;rsquo;re supposed to see? How much data is there? How many users are there? What timezones do they operate in?&lt;/p&gt;
+&lt;p&gt;Taking the answers to these questions, we can build a picture of our requirements, and therefore the features we need to think about and therefore what makes a serving layer good.&lt;/p&gt;
+&lt;h3 id=&#34;why-do-you-need-a-serving-layer&#34;&gt;Why do you need a serving layer?&lt;/h3&gt;
+&lt;p&gt;A big selling point of the data lakehouse is the lakes ability to service a broad range of users, directly from the lake. But  all the lake does is store data - it has no compute ability with which to query that data.&lt;/p&gt;
+&lt;p&gt;Regardless of whether you have analysts exploring the lake or you have a centrally-controlled and developed enterprise model, you need a compute resource to query that lake data.&lt;/p&gt;
+&lt;h3 id=&#34;what-features-do-we-look-for-in-a-serving-area&#34;&gt;What features do we look for in a serving area?&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;1. Concurrency&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If we know we have 100&amp;rsquo;s or even 1,000&amp;rsquo;s of users who&amp;rsquo;ll be querying our data model every day, it&amp;rsquo;s no use copying our data into a Synapse Dedicated pool. Not only would that be an expensive option, but dedicated pool&amp;rsquo;s maximum concurrency limit of 128 would quickly cause delays and performance issues. It would also defeat the purpose of the lakehouse paradigm by duplicating your data to somewhere outside of the lake.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. Security&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Row Level Security (RLS) has long been method for enhancing data security at the serving layer, and is often an important feature to look out for in the majority of projects.&lt;/p&gt;
+&lt;p&gt;Other things to consider here is how well it integrates with your identity management system, whether that be Azure Active Directory (AAD) or something like Okta.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. Performance&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Performance is one of those things that can go completely unnoticed when something is fast, but can be the bane of everyone&amp;rsquo;s life when it&amp;rsquo;s slow!&lt;/p&gt;
+&lt;p&gt;Some things to consider in this area are whether the first users to query each day will have to wait for a resource or cluster to start, or in a serverless scenario, how long does it generally take for a query to even &lt;em&gt;begin&lt;/em&gt; running.&lt;/p&gt;
+&lt;p&gt;On the other hand, if we&amp;rsquo;re importing data into a PowerBI model, how long does that process take? This is especially important if we want to refresh our models throughout the day.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. Integration&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s two sides to the serving layer to consider here. The integration between the lake and the serving layer, and the integration between the serving layer and user reporting tools like PowerBI.&lt;/p&gt;
+&lt;p&gt;On the lake to serving layer integration, if we&amp;rsquo;re using a direct-query model, it absolutely must understand how to read a parquet file or delta table to be a suitable option for serving a data lakehouse. Without this, querying any datasets on the larger side would likely be unacceptably slow for users.&lt;/p&gt;
+&lt;p&gt;Whereas on the other side, does it play nicely with the reporting tools users will be connecting with such as PowerBI, Tableau, Looker, &amp;hellip;or Excel.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5. Cost&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;OK, cost isn&amp;rsquo;t really a &lt;em&gt;feature&lt;/em&gt;, but it&amp;rsquo;s almost always one of the biggest factors in choosing any component of a data platform.&lt;/p&gt;
+&lt;p&gt;Things to consider when you&amp;rsquo;re on a tight budget is whether the resource needs a cluster up and running, and if so what the uptime scheduling for that looks like and how big the cluster needs to be to support the number of users you&amp;rsquo;re expecting.&lt;/p&gt;
+&lt;h3 id=&#34;what-options-are-there&#34;&gt;What options are there?&lt;/h3&gt;
+&lt;p&gt;Gone are the days of Analysis Services&#39; dominance in the serving arena! There are a host of tools available which offer lake based serving capabilities.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Synapse Serverless&lt;/li&gt;
+&lt;li&gt;Databricks SQL&lt;/li&gt;
+&lt;li&gt;Azure Analysis Services&lt;/li&gt;
+&lt;li&gt;PowerBI (Import Mode Only)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These are obviously very Azure / Microsoft focused, which is the space I tend to operate within, but of course there are plenty of other vendors which can read and serve lake data too.&lt;/p&gt;
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;As I&amp;rsquo;ve written these thoughts and considerations out, it&amp;rsquo;s dawned on me just how complex and nuanced a topic this is!&lt;/p&gt;
+&lt;p&gt;In a future post I&amp;rsquo;d like to explore the serving options further, their strengths and weaknesses in the areas I&amp;rsquo;ve mentioned in this post, and the circumstances under which each may be the most appropriate choice.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d be interested to hear other peoples thoughts on this subject.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Azure Synapse Serverless Lake Access Patterns</title>
         <link>https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/</link>
         <pubDate>Wed, 23 Mar 2022 00:00:00 +0000</pubDate>

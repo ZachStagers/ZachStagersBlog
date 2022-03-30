@@ -6,7 +6,17 @@
     <description>Recent content in Azure on Zach Stagers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What Makes a Good Lakehouse Serving Layer?</title>
+      <link>https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/</link>
+      <pubDate>Wed, 30 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/</guid>
+      <description>This post is a bit of an exploratory one, collecting some thoughts about features which combine to make a good data lakehouse serving layer, and the things to consider when choosing a resource to serve your data.
+I do not intend for this post to act as a guide for choosing the right serving layer, but instead it&amp;rsquo;s an introduction to the subject and some things to watch out for as you identify which tool would be best for you.</description>
+    </item>
+    
     <item>
       <title>Azure Synapse Serverless Lake Access Patterns</title>
       <link>https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/</link>

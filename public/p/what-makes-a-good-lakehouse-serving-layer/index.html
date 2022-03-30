@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.
-This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&amp;rsquo;ve linked to at the bottom of this post.'><title>Azure Synapse Serverless Lake Access Patterns</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='This post is a bit of an exploratory one, collecting some thoughts about features which combine to make a good data lakehouse serving layer, and the things to consider when choosing a resource to serve your data.
+I do not intend for this post to act as a guide for choosing the right serving layer, but instead it&amp;rsquo;s an introduction to the subject and some things to watch out for as you identify which tool would be best for you.'><title>What Makes a Good Lakehouse Serving Layer?</title>
 
-<link rel='canonical' href='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/'>
+<link rel='canonical' href='https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/'>
 
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Azure Synapse Serverless Lake Access Patterns'>
-<meta property='og:description' content='I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.
-This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&amp;rsquo;ve linked to at the bottom of this post.'>
-<meta property='og:url' content='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/'>
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='What Makes a Good Lakehouse Serving Layer?'>
+<meta property='og:description' content='This post is a bit of an exploratory one, collecting some thoughts about features which combine to make a good data lakehouse serving layer, and the things to consider when choosing a resource to serve your data.
+I do not intend for this post to act as a guide for choosing the right serving layer, but instead it&amp;rsquo;s an introduction to the subject and some things to watch out for as you identify which tool would be best for you.'>
+<meta property='og:url' content='https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/'>
 <meta property='og:site_name' content='Zach Stagers'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Azure' /><meta property='article:tag' content='Synapse' /><meta property='article:tag' content='Data Lake' /><meta property='article:tag' content='Security' /><meta property='article:published_time' content='2022-03-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-03-23T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/banner_azure_synapse_serverless_lake_access_patterns.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Azure' /><meta property='article:tag' content='Data Serving' /><meta property='article:tag' content='Data Lake' /><meta property='article:tag' content='Lakehouse' /><meta property='article:published_time' content='2022-03-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-03-30T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/banner_what_makes_a_good_lakehouse_serving_layer.jpg' />
 <meta name="twitter:site" content="@ZachStagers">
-    <meta name="twitter:creator" content="@ZachStagers"><meta name="twitter:title" content="Azure Synapse Serverless Lake Access Patterns">
-<meta name="twitter:description" content="I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.
-This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&amp;rsquo;ve linked to at the bottom of this post."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/banner_azure_synapse_serverless_lake_access_patterns.jpg' />
+    <meta name="twitter:creator" content="@ZachStagers"><meta name="twitter:title" content="What Makes a Good Lakehouse Serving Layer?">
+<meta name="twitter:description" content="This post is a bit of an exploratory one, collecting some thoughts about features which combine to make a good data lakehouse serving layer, and the things to consider when choosing a resource to serve your data.
+I do not intend for this post to act as a guide for choosing the right serving layer, but instead it&amp;rsquo;s an introduction to the subject and some things to watch out for as you identify which tool would be best for you."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/banner_what_makes_a_good_lakehouse_serving_layer.jpg' />
     <link rel="shortcut icon" href="favicon.ico" />
 
 <script type="application/javascript">
@@ -181,13 +181,13 @@ if (!doNotTrack) {
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/azure-synapse-serverless-lake-access-patterns/">
-                <img src="/p/azure-synapse-serverless-lake-access-patterns/banner_azure_synapse_serverless_lake_access_patterns.jpg"
+            <a href="/p/what-makes-a-good-lakehouse-serving-layer/">
+                <img src="/p/what-makes-a-good-lakehouse-serving-layer/banner_what_makes_a_good_lakehouse_serving_layer.jpg"
                         
                         width="1500" 
                         height="704" 
                         loading="lazy"
-                        alt="Featured image of post Azure Synapse Serverless Lake Access Patterns" />
+                        alt="Featured image of post What Makes a Good Lakehouse Serving Layer?" />
                 
             </a>
         </div>
@@ -197,7 +197,7 @@ if (!doNotTrack) {
     
 
     <h2 class="article-title">
-        <a href="/p/azure-synapse-serverless-lake-access-patterns/">Azure Synapse Serverless Lake Access Patterns</a>
+        <a href="/p/what-makes-a-good-lakehouse-serving-layer/">What Makes a Good Lakehouse Serving Layer?</a>
     </h2>
 
     
@@ -215,7 +215,7 @@ if (!doNotTrack) {
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2022-03-23</time>
+                <time class="article-time--published">2022-03-30</time>
             </div>
         
 
@@ -230,7 +230,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    4 min read
+                    5 min read
                 </time>
             </div>
         
@@ -240,71 +240,45 @@ if (!doNotTrack) {
 </header>
 
     <section class="article-content">
-    <p>I&rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.</p>
-<p>This was the first time I&rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&rsquo;ve linked to at the bottom of this post.</p>
-<p>The crux of it is that there&rsquo;s several ways to configure access to your lake data from Synapse Serverless, and in this blog I&rsquo;d like to step through the ways we&rsquo;ve configured it, and what those configurations are good for. This post does not speak to network security, although I have provided a link to the Azure Synapse Network Security white paper at the end.</p>
-<h3 id="active-directory-ad-passthrough-aka-user-identity">Active Directory (AD) Passthrough (a.k.a User Identity)</h3>
-<p>This is the default method of accessing data. If you simply open up your Synapse workspace and query your lake data using OpenRowset queries without creating and specifying a data source, your credentials will be passed down to the data lake layer to be authenticated.</p>
-<p>This means that in order for authentication to succeed, you need to have configured either RBAC or ACL&rsquo;s for your user account;</p>
+    <p>This post is a bit of an exploratory one, collecting some thoughts about features which combine to make a good data lakehouse serving layer, and the things to consider when choosing a resource to serve your data.</p>
+<p>I do not intend for this post to act as a guide for choosing the right serving layer, but instead it&rsquo;s an introduction to the subject and some things to watch out for as you identify which tool would be best for you.</p>
+<h3 id="what-is-a-serving-layer">What is a serving layer?</h3>
+<p>Simply put, a serving layer is a method of presenting data to users. Or put differently, it&rsquo;s a tool through which users can access data.</p>
+<p>But when you break that simple statement down, there&rsquo;s a lot to think about! What data is being presented back, and who is it being presented to? How do users want to connect to the serving layer (assuming they have a choice)? And when they&rsquo;ve connected, how do we ensure they only see the data they&rsquo;re supposed to see? How much data is there? How many users are there? What timezones do they operate in?</p>
+<p>Taking the answers to these questions, we can build a picture of our requirements, and therefore the features we need to think about and therefore what makes a serving layer good.</p>
+<h3 id="why-do-you-need-a-serving-layer">Why do you need a serving layer?</h3>
+<p>A big selling point of the data lakehouse is the lakes ability to service a broad range of users, directly from the lake. But  all the lake does is store data - it has no compute ability with which to query that data.</p>
+<p>Regardless of whether you have analysts exploring the lake or you have a centrally-controlled and developed enterprise model, you need a compute resource to query that lake data.</p>
+<h3 id="what-features-do-we-look-for-in-a-serving-area">What features do we look for in a serving area?</h3>
+<p><strong>1. Concurrency</strong></p>
+<p>If we know we have 100&rsquo;s or even 1,000&rsquo;s of users who&rsquo;ll be querying our data model every day, it&rsquo;s no use copying our data into a Synapse Dedicated pool. Not only would that be an expensive option, but dedicated pool&rsquo;s maximum concurrency limit of 128 would quickly cause delays and performance issues. It would also defeat the purpose of the lakehouse paradigm by duplicating your data to somewhere outside of the lake.</p>
+<p><strong>2. Security</strong></p>
+<p>Row Level Security (RLS) has long been method for enhancing data security at the serving layer, and is often an important feature to look out for in the majority of projects.</p>
+<p>Other things to consider here is how well it integrates with your identity management system, whether that be Azure Active Directory (AAD) or something like Okta.</p>
+<p><strong>3. Performance</strong></p>
+<p>Performance is one of those things that can go completely unnoticed when something is fast, but can be the bane of everyone&rsquo;s life when it&rsquo;s slow!</p>
+<p>Some things to consider in this area are whether the first users to query each day will have to wait for a resource or cluster to start, or in a serverless scenario, how long does it generally take for a query to even <em>begin</em> running.</p>
+<p>On the other hand, if we&rsquo;re importing data into a PowerBI model, how long does that process take? This is especially important if we want to refresh our models throughout the day.</p>
+<p><strong>4. Integration</strong></p>
+<p>There&rsquo;s two sides to the serving layer to consider here. The integration between the lake and the serving layer, and the integration between the serving layer and user reporting tools like PowerBI.</p>
+<p>On the lake to serving layer integration, if we&rsquo;re using a direct-query model, it absolutely must understand how to read a parquet file or delta table to be a suitable option for serving a data lakehouse. Without this, querying any datasets on the larger side would likely be unacceptably slow for users.</p>
+<p>Whereas on the other side, does it play nicely with the reporting tools users will be connecting with such as PowerBI, Tableau, Looker, &hellip;or Excel.</p>
+<p><strong>5. Cost</strong></p>
+<p>OK, cost isn&rsquo;t really a <em>feature</em>, but it&rsquo;s almost always one of the biggest factors in choosing any component of a data platform.</p>
+<p>Things to consider when you&rsquo;re on a tight budget is whether the resource needs a cluster up and running, and if so what the uptime scheduling for that looks like and how big the cluster needs to be to support the number of users you&rsquo;re expecting.</p>
+<h3 id="what-options-are-there">What options are there?</h3>
+<p>Gone are the days of Analysis Services' dominance in the serving arena! There are a host of tools available which offer lake based serving capabilities.</p>
 <ul>
-<li>RBAC (Role Based Access Control) - Course grain access control. Whatever RBAC role is assigned will apply to all files and folders in the lake. The role applied to permit access via Serverless must be one of the &lsquo;Storage Blob Data ***&rsquo; roles.</li>
-<li>ACL (Access Control Lists) - Fine grain access control. Grants access to specific files and folders. For a deeper look at ACL&rsquo;s, see a previous blog of mine here: <a class="link" href="https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/"  target="_blank" rel="noopener"
-    >Azure Data Lake ACL Introduction</a>.</li>
+<li>Synapse Serverless</li>
+<li>Databricks SQL</li>
+<li>Azure Analysis Services</li>
+<li>PowerBI (Import Mode Only)</li>
 </ul>
-<p>This option is great in two different ways, depending on which security protocol you use:</p>
-<ul>
-<li>For allowing analysts free reign into the lake (RBAC).</li>
-<li>To have meticulous control over what people have access to (ACL).</li>
-</ul>
-<h3 id="synapse-managed-service-identity-msi---database-scoped">Synapse Managed Service Identity (MSI) - Database Scoped</h3>
-<p>If you don&rsquo;t want to configure ACL&rsquo;s or RBAC for your users, you can grant access via the Synapse managed service identity (MSI) using a database scoped credential. Managed identities are essentially a credential that is created alongside the resource which can be treated like any other active directory account - they typically have the same name as the resource they belong to. The MSI will still need to be granted lake level access (i.e. via RBAC or ACL, per the above section).</p>
-<p>To make use of the MSI, some set up is required. As we&rsquo;re creating a database scoped, you&rsquo;ll need to create a serverless database, then from within that database you need to create a master key to protect our credential.</p>
-<p>Next we create a database scoped credential specifying that the credential is based on the managed service identity.</p>
-<p>The final step is to create an external data source. This specifies our lake location via the data lake storage end point URL, and the credential to use to connect to that end point (in this case this will be our MSI credential). The location specified is the root of where access will be granted, meaning users accessing via this data source will have access to everything beneath the location specified.</p>
-<p>Putting all of this together, we end up with this script to enable lake access:</p>
-<pre><code>CREATE DATABASE SomeDatabase
-
-USE SomeDatabase
-
-CREATE MASTER KEY ENCRYPTION BY PASSWORD='&lt;SuperStrongPassw0rd&gt;'
-
-CREATE DATABASE SCOPED CREDENTIAL ManagedIdentityCredential
-WITH IDENTITY = 'MANAGED SERVICE IDENTITY'
-
-CREATE EXTERNAL DATA SOURCE DataLakeContainer
-WITH (
-      LOCATION = 'https://&lt;storageAccount&gt;.dfs.core.windows.net/container/',
-      CREDENTIAL = ManagedIdentityCredential
-     );
-
-</code></pre><p>To use the data source, we adapt our queries to include a data source parameter in our OpenRowset. Notice now that the BULK parameter, which would by default include the entire lake path, now only needs the path down from the location specified in our data source.</p>
-<pre><code>SELECT
-    TOP 100 *
-FROM
-    OPENROWSET(
-        BULK '/folder/deltaTable',
-        FORMAT = 'DELTA',
-        DATA_SOURCE = 'DataLakeContainer'
-    ) AS [result]
-</code></pre><p>This option is again good in multiple ways:</p>
-<ul>
-<li>For allowing analysts free reign into the lake from a certain access point and below.</li>
-<li>For developing a standard set of views which expose data to PowerBI.</li>
-</ul>
-<h3 id="wrap-up">Wrap Up</h3>
-<p>Using both of these methods together gives us a powerful blend of control and access. We&rsquo;re able to serve a standardised and trusted enterprise data model to PowerBI using the MSI method, and we&rsquo;re able to control access for analysts to splash around in the lake building their own models and metrics.</p>
-<p>This isn&rsquo;t an exhaustive list of access methods - you could also use shared access signatures or service principals.</p>
-<p>Check out some of the security documentation for yourself:</p>
-<ul>
-<li><a class="link" href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/on-demand-workspace-overview#security"  target="_blank" rel="noopener"
-    >Serverless SQL pool in Azure Synapse Analytics</a></li>
-<li><a class="link" href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/develop-storage-files-storage-access-control?tabs=user-identity"  target="_blank" rel="noopener"
-    >Control storage account access for serverless SQL pool in Azure Synapse Analytics</a></li>
-<li><a class="link" href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/resources-self-help-sql-on-demand#storage-access"  target="_blank" rel="noopener"
-    >Self-help for serverless SQL pool</a></li>
-<li><a class="link" href="https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/synapse-analytics/guidance/security-white-paper-network-security.md"  target="_blank" rel="noopener"
-    >Azure Synapse Analytics security white paper: Network Security</a></li>
-</ul>
+<p>These are obviously very Azure / Microsoft focused, which is the space I tend to operate within, but of course there are plenty of other vendors which can read and serve lake data too.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>As I&rsquo;ve written these thoughts and considerations out, it&rsquo;s dawned on me just how complex and nuanced a topic this is!</p>
+<p>In a future post I&rsquo;d like to explore the serving options further, their strengths and weaknesses in the areas I&rsquo;ve mentioned in this post, and the circumstances under which each may be the most appropriate choice.</p>
+<p>I&rsquo;d be interested to hear other peoples thoughts on this subject.</p>
 
 </section>
 
@@ -315,11 +289,11 @@ FROM
         
             <a href="/tags/azure/">Azure</a>
         
-            <a href="/tags/synapse/">Synapse</a>
+            <a href="/tags/data-serving/">Data Serving</a>
         
             <a href="/tags/data-lake/">Data Lake</a>
         
-            <a href="/tags/security/">Security</a>
+            <a href="/tags/lakehouse/">Lakehouse</a>
         
     </section>
 
@@ -329,15 +303,15 @@ FROM
         <br/>
         <h2 class="article-title">Share this post</h2>
             <section class="article-tags">
-        <a href="https://twitter.com/intent/tweet?text=Azure%20Synapse%20Serverless%20Lake%20Access%20Patterns by @ZachStagers - https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fazure-synapse-serverless-lake-access-patterns%2f" target="_blank">
+        <a href="https://twitter.com/intent/tweet?text=What%20Makes%20a%20Good%20Lakehouse%20Serving%20Layer%3f by @ZachStagers - https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fwhat-makes-a-good-lakehouse-serving-layer%2f" target="_blank">
             <img src="../../../../../Twitter_h16.png" alt="Twitter">
         </a>
         
-        <a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fazure-synapse-serverless-lake-access-patterns%2f&title=Azure%20Synapse%20Serverless%20Lake%20Access%20Patterns&summary=Azure%20Synapse%20Serverless%20Lake%20Access%20Patterns&source=www.zachstagers.co.uk" target="_blank">
+        <a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fwhat-makes-a-good-lakehouse-serving-layer%2f&title=What%20Makes%20a%20Good%20Lakehouse%20Serving%20Layer%3f&summary=What%20Makes%20a%20Good%20Lakehouse%20Serving%20Layer%3f&source=www.zachstagers.co.uk" target="_blank">
             <img src="../../../../../LinkedIn_h16.png" alt="LinkedIn">
         </a>
         
-        <a href="mailto:?subject=Azure%20Synapse%20Serverless%20Lake%20Access%20Patterns&amp;body=I thought you might like this post by Zach Stagers; https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fazure-synapse-serverless-lake-access-patterns%2f" target="_blank">
+        <a href="mailto:?subject=What%20Makes%20a%20Good%20Lakehouse%20Serving%20Layer%3f&amp;body=I thought you might like this post by Zach Stagers; https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fwhat-makes-a-good-lakehouse-serving-layer%2f" target="_blank">
             <img src="../../../../../Email_h16.png" alt="Email">
         </a>
     </section>
@@ -360,6 +334,28 @@ FROM
                 
                     
 <article class="has-image">
+    <a href="/p/azure-synapse-serverless-lake-access-patterns/">
+        
+        
+            <div class="article-image">
+                <img src="/p/azure-synapse-serverless-lake-access-patterns/_huaf52790d3873ba9c901850bd72608b39_104481_a9869854c575a07f4ff895ec5d79fdd1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-cDA/NhIpDxSANVFqa/kGwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Azure Synapse Serverless Lake Access Patterns</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
     <a href="/p/azure-data-lake-acl-introduction/">
         
         
@@ -376,28 +372,6 @@ FROM
 
         <div class="article-details">
             <h2 class="article-title">Azure Data Lake ACL Introduction</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/p/what-makes-a-good-lakehouse-serving-layer/">
-        
-        
-            <div class="article-image">
-                <img src="/p/what-makes-a-good-lakehouse-serving-layer/_huc996d9b33128a87812f2d05b2dbdc813_80225_b4bca2d90387fde096c89bdc4b157244.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy" 
-                        data-key="" 
-                        data-hash="md5-WXCsTUQPy&#43;5OtYVb2n2GYQ==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">What Makes a Good Lakehouse Serving Layer?</h2>
         </div>
     </a>
 </article>
