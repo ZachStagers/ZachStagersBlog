@@ -24,6 +24,7 @@
 &lt;h3 id=&#34;what-features-do-we-look-for-in-a-serving-area&#34;&gt;What features do we look for in a serving area?&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;1. Concurrency&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;If we know we have 100&amp;rsquo;s or even 1,000&amp;rsquo;s of users who&amp;rsquo;ll be querying our data model every day, it&amp;rsquo;s no use copying our data into a Synapse Dedicated pool. Not only would that be an expensive option, but dedicated pool&amp;rsquo;s maximum concurrency limit of 128 would quickly cause delays and performance issues. It would also defeat the purpose of the lakehouse paradigm by duplicating your data to somewhere outside of the lake.&lt;/p&gt;
+&lt;p&gt;We need to ensure the tool can handle the number of users and queries, remembering that each visual on a dashboard equates to a query, this can add up fast.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2. Security&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Row Level Security (RLS) has long been method for enhancing data security at the serving layer, and is often an important feature to look out for in the majority of projects.&lt;/p&gt;
 &lt;p&gt;Other things to consider here is how well it integrates with your identity management system, whether that be Azure Active Directory (AAD) or something like Okta.&lt;/p&gt;
@@ -41,8 +42,8 @@
 &lt;h3 id=&#34;what-options-are-there&#34;&gt;What options are there?&lt;/h3&gt;
 &lt;p&gt;Gone are the days of Analysis Services&#39; dominance in the serving arena! There are a host of tools available which offer lake based serving capabilities.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Synapse Serverless&lt;/li&gt;
-&lt;li&gt;Databricks SQL&lt;/li&gt;
+&lt;li&gt;Azure Synapse&lt;/li&gt;
+&lt;li&gt;Databricks&lt;/li&gt;
 &lt;li&gt;Azure Analysis Services&lt;/li&gt;
 &lt;li&gt;PowerBI (Import Mode Only)&lt;/li&gt;
 &lt;/ul&gt;

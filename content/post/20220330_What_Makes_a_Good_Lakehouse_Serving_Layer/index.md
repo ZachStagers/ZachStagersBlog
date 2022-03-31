@@ -35,6 +35,8 @@ Regardless of whether you have analysts exploring the lake or you have a central
 
 If we know we have 100's or even 1,000's of users who'll be querying our data model every day, it's no use copying our data into a Synapse Dedicated pool. Not only would that be an expensive option, but dedicated pool's maximum concurrency limit of 128 would quickly cause delays and performance issues. It would also defeat the purpose of the lakehouse paradigm by duplicating your data to somewhere outside of the lake.
 
+We need to ensure the tool can handle the number of users and queries, remembering that each visual on a dashboard equates to a query, this can add up fast.
+
 **2. Security**
 
 Row Level Security (RLS) has long been method for enhancing data security at the serving layer, and is often an important feature to look out for in the majority of projects.
@@ -67,8 +69,8 @@ Things to consider when you're on a tight budget is whether the resource needs a
 
 Gone are the days of Analysis Services' dominance in the serving arena! There are a host of tools available which offer lake based serving capabilities.
 
-* Synapse Serverless
-* Databricks SQL
+* Azure Synapse
+* Databricks
 * Azure Analysis Services
 * PowerBI (Import Mode Only)
 
