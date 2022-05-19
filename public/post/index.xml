@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Zach Stagers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lakehouse Serving Options - 2022</title>
+      <link>https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/</link>
+      <pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/</guid>
+      <description>I blogged previously on my thoughts about what makes a good lakehouse serving layer - the functionality and features to consider when trying to identify the right serving tool for you.
+In this post I want to go a step further and do a direct comparison of some of the more obvious Azure based lakehouse serving tools - Synapse Serverless, Databricks SQL, and Synapse Dedicated. I&amp;rsquo;ve decided to include Dedicated here, as although it defeats the purpose of the lakehouse paradigm, I&amp;rsquo;m still often asked whether it&amp;rsquo;s suitable.</description>
+    </item>
+    
     <item>
       <title>What Makes a Good Lakehouse Serving Layer?</title>
       <link>https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/</link>

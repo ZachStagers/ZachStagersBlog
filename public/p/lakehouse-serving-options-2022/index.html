@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.
-This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&amp;rsquo;ve linked to at the bottom of this post.'><title>Azure Synapse Serverless Lake Access Patterns</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='I blogged previously on my thoughts about what makes a good lakehouse serving layer - the functionality and features to consider when trying to identify the right serving tool for you.
+In this post I want to go a step further and do a direct comparison of some of the more obvious Azure based lakehouse serving tools - Synapse Serverless, Databricks SQL, and Synapse Dedicated. I&amp;rsquo;ve decided to include Dedicated here, as although it defeats the purpose of the lakehouse paradigm, I&amp;rsquo;m still often asked whether it&amp;rsquo;s suitable.'><title>Lakehouse Serving Options - 2022</title>
 
-<link rel='canonical' href='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/'>
+<link rel='canonical' href='https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/'>
 
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Azure Synapse Serverless Lake Access Patterns'>
-<meta property='og:description' content='I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.
-This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&amp;rsquo;ve linked to at the bottom of this post.'>
-<meta property='og:url' content='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/'>
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Lakehouse Serving Options - 2022'>
+<meta property='og:description' content='I blogged previously on my thoughts about what makes a good lakehouse serving layer - the functionality and features to consider when trying to identify the right serving tool for you.
+In this post I want to go a step further and do a direct comparison of some of the more obvious Azure based lakehouse serving tools - Synapse Serverless, Databricks SQL, and Synapse Dedicated. I&amp;rsquo;ve decided to include Dedicated here, as although it defeats the purpose of the lakehouse paradigm, I&amp;rsquo;m still often asked whether it&amp;rsquo;s suitable.'>
+<meta property='og:url' content='https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/'>
 <meta property='og:site_name' content='Zach Stagers'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Azure' /><meta property='article:tag' content='Synapse' /><meta property='article:tag' content='Data Lake' /><meta property='article:tag' content='Security' /><meta property='article:published_time' content='2022-03-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-03-23T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/banner_azure_synapse_serverless_lake_access_patterns.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Azure' /><meta property='article:tag' content='Data Serving' /><meta property='article:tag' content='Data Lake' /><meta property='article:tag' content='Lakehouse' /><meta property='article:tag' content='Synapse' /><meta property='article:tag' content='Databricks' /><meta property='article:published_time' content='2022-05-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-05-15T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/banner_lakehouse_serving_options_2022.jpg' />
 <meta name="twitter:site" content="@ZachStagers">
-    <meta name="twitter:creator" content="@ZachStagers"><meta name="twitter:title" content="Azure Synapse Serverless Lake Access Patterns">
-<meta name="twitter:description" content="I&amp;rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.
-This was the first time I&amp;rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&amp;rsquo;ve linked to at the bottom of this post."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/banner_azure_synapse_serverless_lake_access_patterns.jpg' />
+    <meta name="twitter:creator" content="@ZachStagers"><meta name="twitter:title" content="Lakehouse Serving Options - 2022">
+<meta name="twitter:description" content="I blogged previously on my thoughts about what makes a good lakehouse serving layer - the functionality and features to consider when trying to identify the right serving tool for you.
+In this post I want to go a step further and do a direct comparison of some of the more obvious Azure based lakehouse serving tools - Synapse Serverless, Databricks SQL, and Synapse Dedicated. I&amp;rsquo;ve decided to include Dedicated here, as although it defeats the purpose of the lakehouse paradigm, I&amp;rsquo;m still often asked whether it&amp;rsquo;s suitable."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/banner_lakehouse_serving_options_2022.jpg' />
     <link rel="shortcut icon" href="favicon.ico" />
 
 <script type="application/javascript">
@@ -181,13 +181,13 @@ if (!doNotTrack) {
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/azure-synapse-serverless-lake-access-patterns/">
-                <img src="/p/azure-synapse-serverless-lake-access-patterns/banner_azure_synapse_serverless_lake_access_patterns.jpg"
+            <a href="/p/lakehouse-serving-options-2022/">
+                <img src="/p/lakehouse-serving-options-2022/banner_lakehouse_serving_options_2022.jpg"
                         
                         width="1500" 
                         height="704" 
                         loading="lazy"
-                        alt="Featured image of post Azure Synapse Serverless Lake Access Patterns" />
+                        alt="Featured image of post Lakehouse Serving Options - 2022" />
                 
             </a>
         </div>
@@ -197,7 +197,7 @@ if (!doNotTrack) {
     
 
     <h2 class="article-title">
-        <a href="/p/azure-synapse-serverless-lake-access-patterns/">Azure Synapse Serverless Lake Access Patterns</a>
+        <a href="/p/lakehouse-serving-options-2022/">Lakehouse Serving Options - 2022</a>
     </h2>
 
     
@@ -215,7 +215,7 @@ if (!doNotTrack) {
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2022-03-23</time>
+                <time class="article-time--published">2022-05-15</time>
             </div>
         
 
@@ -230,7 +230,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    4 min read
+                    5 min read
                 </time>
             </div>
         
@@ -240,71 +240,57 @@ if (!doNotTrack) {
 </header>
 
     <section class="article-content">
-    <p>I&rsquo;ve been working with a client to build a large Data Lakehouse platform predominantly using Databricks as a processing engine and Synapse Serverless to serve the data out in a couple different ways.</p>
-<p>This was the first time I&rsquo;d properly used Synapse Serverless in anger, and to say I found the documentation around lake access confusing would be an understatement! Everything I needed to understand was spread over a few different articles, which I&rsquo;ve linked to at the bottom of this post.</p>
-<p>The crux of it is that there&rsquo;s several ways to configure access to your lake data from Synapse Serverless, and in this blog I&rsquo;d like to step through the ways we&rsquo;ve configured it, and what those configurations are good for. This post does not speak to network security, although I have provided a link to the Azure Synapse Network Security white paper at the end.</p>
-<h3 id="active-directory-ad-passthrough-aka-user-identity">Active Directory (AD) Passthrough (a.k.a User Identity)</h3>
-<p>This is the default method of accessing data. If you simply open up your Synapse workspace and query your lake data using OpenRowset queries without creating and specifying a data source, your credentials will be passed down to the data lake layer to be authenticated.</p>
-<p>This means that in order for authentication to succeed, you need to have configured either RBAC or ACL&rsquo;s for your user account;</p>
-<ul>
-<li>RBAC (Role Based Access Control) - Course grain access control. Whatever RBAC role is assigned will apply to all files and folders in the lake. The role applied to permit access via Serverless must be one of the &lsquo;Storage Blob Data ***&rsquo; roles.</li>
-<li>ACL (Access Control Lists) - Fine grain access control. Grants access to specific files and folders. For a deeper look at ACL&rsquo;s, see a previous blog of mine here: <a class="link" href="https://www.zachstagers.co.uk/p/azure-data-lake-acl-introduction/"  target="_blank" rel="noopener"
-    >Azure Data Lake ACL Introduction</a>.</li>
-</ul>
-<p>This option is great in two different ways, depending on which security protocol you use:</p>
-<ul>
-<li>For allowing analysts free reign into the lake (RBAC).</li>
-<li>To have meticulous control over what people have access to (ACL).</li>
-</ul>
-<h3 id="synapse-managed-service-identity-msi---database-scoped">Synapse Managed Service Identity (MSI) - Database Scoped</h3>
-<p>If you don&rsquo;t want to configure ACL&rsquo;s or RBAC for your users, you can grant access via the Synapse managed service identity (MSI) using a database scoped credential. Managed identities are essentially a credential that is created alongside the resource which can be treated like any other active directory account - they typically have the same name as the resource they belong to. The MSI will still need to be granted lake level access (i.e. via RBAC or ACL, per the above section).</p>
-<p>To make use of the MSI, some set up is required. As we&rsquo;re creating a database scoped, you&rsquo;ll need to create a serverless database, then from within that database you need to create a master key to protect our credential.</p>
-<p>Next we create a database scoped credential specifying that the credential is based on the managed service identity.</p>
-<p>The final step is to create an external data source. This specifies our lake location via the data lake storage end point URL, and the credential to use to connect to that end point (in this case this will be our MSI credential). The location specified is the root of where access will be granted, meaning users accessing via this data source will have access to everything beneath the location specified.</p>
-<p>Putting all of this together, we end up with this script to enable lake access:</p>
-<pre><code>CREATE DATABASE SomeDatabase
-
-USE SomeDatabase
-
-CREATE MASTER KEY ENCRYPTION BY PASSWORD='&lt;SuperStrongPassw0rd&gt;'
-
-CREATE DATABASE SCOPED CREDENTIAL ManagedIdentityCredential
-WITH IDENTITY = 'MANAGED SERVICE IDENTITY'
-
-CREATE EXTERNAL DATA SOURCE DataLakeContainer
-WITH (
-      LOCATION = 'https://&lt;storageAccount&gt;.dfs.core.windows.net/container/',
-      CREDENTIAL = ManagedIdentityCredential
-     );
-
-</code></pre><p>To use the data source, we adapt our queries to include a data source parameter in our OpenRowset. Notice now that the BULK parameter, which would by default include the entire lake path, now only needs the path down from the location specified in our data source.</p>
-<pre><code>SELECT
-    TOP 100 *
-FROM
-    OPENROWSET(
-        BULK '/folder/deltaTable',
-        FORMAT = 'DELTA',
-        DATA_SOURCE = 'DataLakeContainer'
-    ) AS [result]
-</code></pre><p>This option is again good in multiple ways:</p>
-<ul>
-<li>For allowing analysts free reign into the lake from a certain access point and below.</li>
-<li>For developing a standard set of views which expose data to PowerBI.</li>
-</ul>
-<h3 id="wrap-up">Wrap Up</h3>
-<p>Using both of these methods together gives us a powerful blend of control and access. We&rsquo;re able to serve a standardised and trusted enterprise data model to PowerBI using the MSI method, and we&rsquo;re able to control access for analysts to splash around in the lake building their own models and metrics.</p>
-<p>This isn&rsquo;t an exhaustive list of access methods - you could also use shared access signatures or service principals.</p>
-<p>Check out some of the security documentation for yourself:</p>
-<ul>
-<li><a class="link" href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/on-demand-workspace-overview#security"  target="_blank" rel="noopener"
-    >Serverless SQL pool in Azure Synapse Analytics</a></li>
-<li><a class="link" href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/develop-storage-files-storage-access-control?tabs=user-identity"  target="_blank" rel="noopener"
-    >Control storage account access for serverless SQL pool in Azure Synapse Analytics</a></li>
-<li><a class="link" href="https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/resources-self-help-sql-on-demand#storage-access"  target="_blank" rel="noopener"
-    >Self-help for serverless SQL pool</a></li>
-<li><a class="link" href="https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/synapse-analytics/guidance/security-white-paper-network-security.md"  target="_blank" rel="noopener"
-    >Azure Synapse Analytics security white paper: Network Security</a></li>
-</ul>
+    <p>I blogged previously on my thoughts about <a class="link" href="https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/"  target="_blank" rel="noopener"
+    >what makes a good lakehouse serving layer</a> - the functionality and features to consider when trying to identify the right serving tool for you.</p>
+<p>In this post I want to go a step further and do a direct comparison of some of the more obvious Azure based lakehouse serving tools - Synapse Serverless, Databricks SQL, and Synapse Dedicated. I&rsquo;ve decided to include Dedicated here, as although it defeats the purpose of the lakehouse paradigm, I&rsquo;m still often asked whether it&rsquo;s suitable.</p>
+<p>You&rsquo;ll notice I&rsquo;ve put 2022 in the title of this blog. This is the type of thing that&rsquo;ll have a changing landscape as these tools develop further, and new tools emerge, so I wanted to create that distinction now to support future editions of this post.</p>
+<h3 id="functionality-comparison">Functionality Comparison</h3>
+<p>In my previous post, I called out 5 main things to look out for when choosing a tool; Concurrency, Security, Performance, Integration, and Cost. Below I&rsquo;ve produced a comparison chart across these 5 metrics for the tools in scope for this blog.</p>
+<p><figure style="flex-grow: 179; flex-basis: 431px">
+		<a href="/p/lakehouse-serving-options-2022/lakehouse_serving_options_2022_zach_stagers.JPG" data-size="3083x1715"><img src="/p/lakehouse-serving-options-2022/lakehouse_serving_options_2022_zach_stagers.JPG"
+				
+				width="3083"
+				height="1715"
+				loading="lazy"
+				alt="2022 Lakehouse Serving Tool Comparison Chart.">
+		</a>
+		
+		<figcaption>2022 Lakehouse Serving Tool Comparison Chart.</figcaption>
+		
+	</figure></p>
+<p>For reference, here&rsquo;s a link to <a class="link" href="https://www.vldb.org/pvldb/vol13/p3204-saborit.pdf"  target="_blank" rel="noopener"
+    >Synapse Serverless' Polaris Engine White Paper</a>.</p>
+<p>The comparison chart above condenses a lot of information into a single table, but of course there are other things to consider. Things like the maintenance involved with managing each of those tools, how arduous the set up and configuration is, and their unique abilities (or USP&rsquo;s).</p>
+<h3 id="setup-and-configuration">Setup and Configuration</h3>
+<p>By setup and configuration, I mean all of the work involved with getting to the point you can actually serve data from the tool - excluding your specific security setup&hellip;</p>
+<p><strong>Synapse Dedicated</strong></p>
+<p>In order to serve out of a dedicated SQL pool, you would first need to ingest the data into that pool. This could potentially include creating credentials, external file formats, external data source, external tables, and using PolyBase, or using the COPY command.</p>
+<p>Once the data is into a dedicated pool, it may need merging from staging tables into serving tables using slowly changing techniques (SCD).</p>
+<p>That&rsquo;s quite a lot of configuration, plus you have to pay an additional ~£18 per TB of data stored inside the dedicated pool each month.</p>
+<p><strong>Synapse Serverless</strong></p>
+<p>Similar to Dedicated, but a little simpler. Here we need to provide a method of reading from the lake which may again include creating credentials, external file formats, and external data sources - plus views over those entities from which to serve, but there&rsquo;s no PolyBase or COPY or data storage.</p>
+<p>I&rsquo;ve blogged previously about <a class="link" href="https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/"  target="_blank" rel="noopener"
+    >Azure Synapse Serverless Lake Access Patterns</a>, so I won&rsquo;t go into any more detail on that here.</p>
+<p><strong>Databricks SQL</strong></p>
+<p>Perhaps the easiest of the lot. Assuming that you&rsquo;re using Databricks as your processing engine, you probably already have your tables saved within the Hive metastore, which makes them available for querying in Databricks SQL.</p>
+<p>If you&rsquo;re not using Databricks for your processing, then you&rsquo;d need to mount your lake, create a database, and create your tables specifying the lake location to be read from.</p>
+<h3 id="maintenance">Maintenance</h3>
+<p><strong>Synapse Dedicated</strong></p>
+<p>Managing a Dedicated pool can be quite involved. You need to think about the distribution method used for each table to avoid skew, whether table replication is appropriate, and the more traditional maintenance that comes with indexing.</p>
+<p><strong>Synapse Serverless</strong></p>
+<p>Aside from ensuring your lake is in order, there really isn&rsquo;t any maintenance involved with Serverless - that&rsquo;s the beauty of Polaris. If you&rsquo;re using the Delta format (you should be) then you&rsquo;ll want to apply vacuuming and optimising occasionally to keep things tip top.</p>
+<p><strong>Databricks SQL</strong></p>
+<p>With Databricks SQL you have an endpoint/clusters to monitor and manage, which comes with some overhead. On top of that, you should again ensure your Delta files are in good shape by running a vacuum and optimise every now and then.</p>
+<h3 id="unique-selling-points">Unique Selling Points</h3>
+<p><strong>Synapse Dedicated</strong></p>
+<p>It doesn&rsquo;t really have any unique serving capabilities when compared to Synapse Serverless and Databricks SQL.</p>
+<p><strong>Synapse Serverless</strong></p>
+<p>The beauty of Serverless is the Polaris engine. There&rsquo;s absolutely nothing to manage - no cluster to spin up, or sizing. On the other hand, this means it&rsquo;s a little black boxy, but there&rsquo;s plenty of guidance out there about how to optimise serverless queries (hint: use Delta and specify a WITH clause with narrow data types!).</p>
+<p><strong>Databricks SQL</strong></p>
+<p>Databricks SQL offers the in-built ability to create visualisations, dashboards, and alerts. Meaning, if it caters to all your visualisation needs, and you go all in on Databricks, you may not even need PowerBI licencing! Suddenly the price tag for a Databricks SQL cluster really doesn&rsquo;t look too bad&hellip;</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Hopefully this post has helped you decide on how you want to serve your lake. On the surface it may appear that Serverless is the outright winner here, but Databricks SQL is a fantastic option too. If you&rsquo;re only using Synapse for one of it&rsquo;s many capabilities (in this case Serverless), the fact you could eliminate it from your architecture all together and therefore not have another resource/workspace to manage is a really big deal.</p>
+<p>It feels as though I&rsquo;ve been pretty harsh on ol' Synapse Dedicated SQL Pools today&hellip; but in the age of lakes, it is not king, and I hope to have painted a clear and obvious picture of the reasons why it isn&rsquo;t suitable for serving a lake-based analytical model.</p>
 
 </section>
 
@@ -315,11 +301,15 @@ FROM
         
             <a href="/tags/azure/">Azure</a>
         
-            <a href="/tags/synapse/">Synapse</a>
+            <a href="/tags/data-serving/">Data Serving</a>
         
             <a href="/tags/data-lake/">Data Lake</a>
         
-            <a href="/tags/security/">Security</a>
+            <a href="/tags/lakehouse/">Lakehouse</a>
+        
+            <a href="/tags/synapse/">Synapse</a>
+        
+            <a href="/tags/databricks/">Databricks</a>
         
     </section>
 
@@ -329,15 +319,15 @@ FROM
         <br/>
         <h2 class="article-title">Share this post</h2>
             <section class="article-tags">
-        <a href="https://twitter.com/intent/tweet?text=Azure%20Synapse%20Serverless%20Lake%20Access%20Patterns by @ZachStagers - https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fazure-synapse-serverless-lake-access-patterns%2f" target="_blank">
+        <a href="https://twitter.com/intent/tweet?text=Lakehouse%20Serving%20Options%20-%202022 by @ZachStagers - https%3a%2f%2fwww.zachstagers.co.uk%2fp%2flakehouse-serving-options-2022%2f" target="_blank">
             <img src="../../../../../Twitter_h16.png" alt="Twitter">
         </a>
         
-        <a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fazure-synapse-serverless-lake-access-patterns%2f&title=Azure%20Synapse%20Serverless%20Lake%20Access%20Patterns&summary=Azure%20Synapse%20Serverless%20Lake%20Access%20Patterns&source=www.zachstagers.co.uk" target="_blank">
+        <a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.zachstagers.co.uk%2fp%2flakehouse-serving-options-2022%2f&title=Lakehouse%20Serving%20Options%20-%202022&summary=Lakehouse%20Serving%20Options%20-%202022&source=www.zachstagers.co.uk" target="_blank">
             <img src="../../../../../LinkedIn_h16.png" alt="LinkedIn">
         </a>
         
-        <a href="mailto:?subject=Azure%20Synapse%20Serverless%20Lake%20Access%20Patterns&amp;body=I thought you might like this post by Zach Stagers; https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fazure-synapse-serverless-lake-access-patterns%2f" target="_blank">
+        <a href="mailto:?subject=Lakehouse%20Serving%20Options%20-%202022&amp;body=I thought you might like this post by Zach Stagers; https%3a%2f%2fwww.zachstagers.co.uk%2fp%2flakehouse-serving-options-2022%2f" target="_blank">
             <img src="../../../../../Email_h16.png" alt="Email">
         </a>
     </section>
@@ -360,22 +350,66 @@ FROM
                 
                     
 <article class="has-image">
-    <a href="/p/lakehouse-serving-options-2022/">
+    <a href="/p/what-makes-a-good-lakehouse-serving-layer/">
         
         
             <div class="article-image">
-                <img src="/p/lakehouse-serving-options-2022/_huc996d9b33128a87812f2d05b2dbdc813_79049_30cc1545dd3b672e24dd8d7a2e91c8af.jpg" 
+                <img src="/p/what-makes-a-good-lakehouse-serving-layer/_huc996d9b33128a87812f2d05b2dbdc813_80225_b4bca2d90387fde096c89bdc4b157244.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy" 
                         data-key="" 
-                        data-hash="md5-1m5rrIqMkRUmgT&#43;1ygVALg==">
+                        data-hash="md5-WXCsTUQPy&#43;5OtYVb2n2GYQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Lakehouse Serving Options - 2022</h2>
+            <h2 class="article-title">What Makes a Good Lakehouse Serving Layer?</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/azure-synapse-serverless-lake-access-patterns/">
+        
+        
+            <div class="article-image">
+                <img src="/p/azure-synapse-serverless-lake-access-patterns/_huaf52790d3873ba9c901850bd72608b39_104481_a9869854c575a07f4ff895ec5d79fdd1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-cDA/NhIpDxSANVFqa/kGwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Azure Synapse Serverless Lake Access Patterns</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/connect-azure-databricks-to-a-devops-repo-in-a-different-tenancy/">
+        
+        
+            <div class="article-image">
+                <img src="/p/connect-azure-databricks-to-a-devops-repo-in-a-different-tenancy/_huccd27d7eeab6be631be70e7941010284_572036_44f489ef3fee7d0d969002cff5dafba9.JPG" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-krPXhUndlmigiCr95o6VTQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Connect Azure Databricks to a DevOps repo in a different tenancy</h2>
         </div>
     </a>
 </article>
@@ -398,28 +432,6 @@ FROM
 
         <div class="article-details">
             <h2 class="article-title">Azure Data Lake ACL Introduction</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/p/what-makes-a-good-lakehouse-serving-layer/">
-        
-        
-            <div class="article-image">
-                <img src="/p/what-makes-a-good-lakehouse-serving-layer/_huc996d9b33128a87812f2d05b2dbdc813_80225_b4bca2d90387fde096c89bdc4b157244.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy" 
-                        data-key="" 
-                        data-hash="md5-WXCsTUQPy&#43;5OtYVb2n2GYQ==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">What Makes a Good Lakehouse Serving Layer?</h2>
         </div>
     </a>
 </article>

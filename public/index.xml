@@ -6,7 +6,66 @@
         <description>Recent content on Zach Stagers</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 30 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 15 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Lakehouse Serving Options - 2022</title>
+        <link>https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/</link>
+        <pubDate>Sun, 15 May 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/</guid>
+        <description>&lt;img src="https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/banner_lakehouse_serving_options_2022.jpg" alt="Featured image of post Lakehouse Serving Options - 2022" /&gt;&lt;p&gt;I blogged previously on my thoughts about &lt;a class=&#34;link&#34; href=&#34;https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;what makes a good lakehouse serving layer&lt;/a&gt; - the functionality and features to consider when trying to identify the right serving tool for you.&lt;/p&gt;
+&lt;p&gt;In this post I want to go a step further and do a direct comparison of some of the more obvious Azure based lakehouse serving tools - Synapse Serverless, Databricks SQL, and Synapse Dedicated. I&amp;rsquo;ve decided to include Dedicated here, as although it defeats the purpose of the lakehouse paradigm, I&amp;rsquo;m still often asked whether it&amp;rsquo;s suitable.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ll notice I&amp;rsquo;ve put 2022 in the title of this blog. This is the type of thing that&amp;rsquo;ll have a changing landscape as these tools develop further, and new tools emerge, so I wanted to create that distinction now to support future editions of this post.&lt;/p&gt;
+&lt;h3 id=&#34;functionality-comparison&#34;&gt;Functionality Comparison&lt;/h3&gt;
+&lt;p&gt;In my previous post, I called out 5 main things to look out for when choosing a tool; Concurrency, Security, Performance, Integration, and Cost. Below I&amp;rsquo;ve produced a comparison chart across these 5 metrics for the tools in scope for this blog.&lt;/p&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 179; flex-basis: 431px&#34;&gt;
+		&lt;a href=&#34;https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/lakehouse_serving_options_2022_zach_stagers.JPG&#34; data-size=&#34;3083x1715&#34;&gt;&lt;img src=&#34;https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/lakehouse_serving_options_2022_zach_stagers.JPG&#34;
+				
+				width=&#34;3083&#34;
+				height=&#34;1715&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;2022 Lakehouse Serving Tool Comparison Chart.&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;2022 Lakehouse Serving Tool Comparison Chart.&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;For reference, here&amp;rsquo;s a link to &lt;a class=&#34;link&#34; href=&#34;https://www.vldb.org/pvldb/vol13/p3204-saborit.pdf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Synapse Serverless&#39; Polaris Engine White Paper&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The comparison chart above condenses a lot of information into a single table, but of course there are other things to consider. Things like the maintenance involved with managing each of those tools, how arduous the set up and configuration is, and their unique abilities (or USP&amp;rsquo;s).&lt;/p&gt;
+&lt;h3 id=&#34;setup-and-configuration&#34;&gt;Setup and Configuration&lt;/h3&gt;
+&lt;p&gt;By setup and configuration, I mean all of the work involved with getting to the point you can actually serve data from the tool - excluding your specific security setup&amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Synapse Dedicated&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In order to serve out of a dedicated SQL pool, you would first need to ingest the data into that pool. This could potentially include creating credentials, external file formats, external data source, external tables, and using PolyBase, or using the COPY command.&lt;/p&gt;
+&lt;p&gt;Once the data is into a dedicated pool, it may need merging from staging tables into serving tables using slowly changing techniques (SCD).&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s quite a lot of configuration, plus you have to pay an additional ~£18 per TB of data stored inside the dedicated pool each month.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Synapse Serverless&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Similar to Dedicated, but a little simpler. Here we need to provide a method of reading from the lake which may again include creating credentials, external file formats, and external data sources - plus views over those entities from which to serve, but there&amp;rsquo;s no PolyBase or COPY or data storage.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve blogged previously about &lt;a class=&#34;link&#34; href=&#34;https://www.zachstagers.co.uk/p/azure-synapse-serverless-lake-access-patterns/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Azure Synapse Serverless Lake Access Patterns&lt;/a&gt;, so I won&amp;rsquo;t go into any more detail on that here.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Databricks SQL&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Perhaps the easiest of the lot. Assuming that you&amp;rsquo;re using Databricks as your processing engine, you probably already have your tables saved within the Hive metastore, which makes them available for querying in Databricks SQL.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;re not using Databricks for your processing, then you&amp;rsquo;d need to mount your lake, create a database, and create your tables specifying the lake location to be read from.&lt;/p&gt;
+&lt;h3 id=&#34;maintenance&#34;&gt;Maintenance&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Synapse Dedicated&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Managing a Dedicated pool can be quite involved. You need to think about the distribution method used for each table to avoid skew, whether table replication is appropriate, and the more traditional maintenance that comes with indexing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Synapse Serverless&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Aside from ensuring your lake is in order, there really isn&amp;rsquo;t any maintenance involved with Serverless - that&amp;rsquo;s the beauty of Polaris. If you&amp;rsquo;re using the Delta format (you should be) then you&amp;rsquo;ll want to apply vacuuming and optimising occasionally to keep things tip top.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Databricks SQL&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;With Databricks SQL you have an endpoint/clusters to monitor and manage, which comes with some overhead. On top of that, you should again ensure your Delta files are in good shape by running a vacuum and optimise every now and then.&lt;/p&gt;
+&lt;h3 id=&#34;unique-selling-points&#34;&gt;Unique Selling Points&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Synapse Dedicated&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It doesn&amp;rsquo;t really have any unique serving capabilities when compared to Synapse Serverless and Databricks SQL.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Synapse Serverless&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The beauty of Serverless is the Polaris engine. There&amp;rsquo;s absolutely nothing to manage - no cluster to spin up, or sizing. On the other hand, this means it&amp;rsquo;s a little black boxy, but there&amp;rsquo;s plenty of guidance out there about how to optimise serverless queries (hint: use Delta and specify a WITH clause with narrow data types!).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Databricks SQL&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Databricks SQL offers the in-built ability to create visualisations, dashboards, and alerts. Meaning, if it caters to all your visualisation needs, and you go all in on Databricks, you may not even need PowerBI licencing! Suddenly the price tag for a Databricks SQL cluster really doesn&amp;rsquo;t look too bad&amp;hellip;&lt;/p&gt;
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;Hopefully this post has helped you decide on how you want to serve your lake. On the surface it may appear that Serverless is the outright winner here, but Databricks SQL is a fantastic option too. If you&amp;rsquo;re only using Synapse for one of it&amp;rsquo;s many capabilities (in this case Serverless), the fact you could eliminate it from your architecture all together and therefore not have another resource/workspace to manage is a really big deal.&lt;/p&gt;
+&lt;p&gt;It feels as though I&amp;rsquo;ve been pretty harsh on ol&#39; Synapse Dedicated SQL Pools today&amp;hellip; but in the age of lakes, it is not king, and I hope to have painted a clear and obvious picture of the reasons why it isn&amp;rsquo;t suitable for serving a lake-based analytical model.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>What Makes a Good Lakehouse Serving Layer?</title>
         <link>https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/</link>
         <pubDate>Wed, 30 Mar 2022 00:00:00 +0000</pubDate>
