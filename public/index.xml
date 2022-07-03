@@ -6,7 +6,112 @@
         <description>Recent content on Zach Stagers</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 19 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 03 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Data and AI Summit 2022 Announcements</title>
+        <link>https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/</link>
+        <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/</guid>
+        <description>&lt;img src="https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/banner_data_and_ai_summit_2022_announcements.jpg" alt="Featured image of post Data and AI Summit 2022 Announcements" /&gt;&lt;h3 id=&#34;data-and-ai-summit-2022&#34;&gt;Data and AI Summit 2022&lt;/h3&gt;
+&lt;p&gt;I&amp;rsquo;m absolutely buzzing after attending my first Data and AI Summit (DAAIS) in San Francisco last week (June 27th to 30th). Incredible key notes, fantastic venue and city, good people, and awesome after parties! Huge thank you to everyone at Databricks for putting the event together, and to Advancing Analytics for giving me the opportunity to attend.&lt;/p&gt;
+&lt;p&gt;As I sit on my flight home, mind racing over the events of the week, I wanted to be productive and write up some of the key announcements and share some initial thoughts. We&amp;rsquo;ll definitely be diving deeper into each of these with more targeted posts &amp;amp; videos over on our YouTube, and as we do that, I&amp;rsquo;ll update this post with the relevant links.&lt;/p&gt;
+&lt;p&gt;Anyway, here&amp;rsquo;s a quick lowdown of some of the announcements in no particular order&amp;hellip; Let me know what you&amp;rsquo;re most excited to get a closer look at.&lt;/p&gt;
+&lt;h3 id=&#34;delta-20&#34;&gt;Delta 2.0&lt;/h3&gt;
+&lt;p&gt;One of the biggest cheers of the keynote was that Delta is being fully open sourced! Databricks continue to hare their incredible work to help drive our industry forward. Delta already has wide adoption, but with the open sourced version now being levelled up to the same standard as the &amp;lsquo;proprietary&amp;rsquo; one, this should help cement it as the default choice for lake-based storage.&lt;/p&gt;
+&lt;p&gt;There were some announcements of things to come with Delta too, such as a optimised deletes and updates by removing single rows instead of having to completely rewrite the file. It&amp;rsquo;ll be really interesting to see how this works, and just how much it boosts performance.&lt;/p&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 182; flex-basis: 439px&#34;&gt;
+		&lt;a href=&#34;https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/delta.JPG&#34; data-size=&#34;900x492&#34;&gt;&lt;img src=&#34;https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/delta.JPG&#34;
+				
+				width=&#34;900&#34;
+				height=&#34;492&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;Delta Announcements.&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;Delta Announcements.&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&#34;delta-sharing-and-cleanrooms&#34;&gt;Delta Sharing and Cleanrooms&lt;/h3&gt;
+&lt;p&gt;Delta Sharing is going Generally Available (GA), and has had more connectors added this year (such as PowerBI), and has more connectors coming soon (such as Terraform, Tableau, and Airflow).&lt;/p&gt;
+&lt;p&gt;On top of that, Cleanrooms was announced and has really caught my attention. It&amp;rsquo;s part of Delta Sharing and provides a way of tightly controlling access to your shared data sets. It looks to include things like external query approval, which means you&amp;rsquo;ll have total visibility of the data and aggregations people are trying (if approved) to view.&lt;/p&gt;
+&lt;p&gt;This feels like it could be huge in industries like healthcare, finance, and other heavily regulated industries. I expect this&amp;rsquo;ll unlock the ability for those with sensitive data to more easily work with third parties for data analysis and science, whilst never exposing PII type field, for example.&lt;/p&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 182; flex-basis: 437px&#34;&gt;
+		&lt;a href=&#34;https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/cleanrooms.JPG&#34; data-size=&#34;902x495&#34;&gt;&lt;img src=&#34;https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/cleanrooms.JPG&#34;
+				
+				width=&#34;902&#34;
+				height=&#34;495&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;Cleanrooms Announcement.&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;Cleanrooms Announcement.&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&#34;databricks-marketplace&#34;&gt;Databricks Marketplace&lt;/h3&gt;
+&lt;p&gt;More than just a data asset marketplace for things like weather data, but also for ML models, solution accelerators like Hydr8, notebooks, and dashboards. There wasn&amp;rsquo;t much detail given around actually listing something in the marketplace or charging options, so it&amp;rsquo;ll be interesting to see how this all works. Could be handy.&lt;/p&gt;
+&lt;h3 id=&#34;spark-connect&#34;&gt;Spark Connect&lt;/h3&gt;
+&lt;p&gt;A new API for submitting Spark jobs. Will most likely open up better integration for IDE&amp;rsquo;s such as VSCode, but also means other lightweight applications will have a way of submitting Spark jobs. Perhaps developing notebooks from your watch is just around the corner?&lt;/p&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 182; flex-basis: 438px&#34;&gt;
+		&lt;a href=&#34;https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/spark_connect.JPG&#34; data-size=&#34;900x493&#34;&gt;&lt;img src=&#34;https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/spark_connect.JPG&#34;
+				
+				width=&#34;900&#34;
+				height=&#34;493&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;Spark Connect Announcement.&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;Spark Connect Announcement.&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&#34;unity-catalog&#34;&gt;Unity Catalog&lt;/h3&gt;
+&lt;p&gt;This has been much anticipated. Matei Zaharia himself came out on stage to demo this one, with CEO Ali Ghodsi saying they&amp;rsquo;d put the &amp;lsquo;smartest man in the company&amp;rsquo; on the project!&lt;/p&gt;
+&lt;p&gt;Matei&amp;rsquo;s demo did a great job of showing off some of the lineage capabilities, with both up &amp;amp; down stream lineage being available. Upstream being &amp;ldquo;Where this entity was sourced from&amp;rdquo; and downstream being &amp;ldquo;Where this entity is fed into&amp;rdquo;. Really handy for measuring impact of editting a particular notebook and building test plans for example.&lt;/p&gt;
+&lt;p&gt;Simon Whiteley&amp;rsquo;s already had a dig into this one and published a video, which you can see here; &lt;a class=&#34;link&#34; href=&#34;youtu.be/FCuuFGS3jFM&#34; &gt;Advancing Analytics YouTube; Unity Catalog Intro&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Unity Catalog will be going GA in the coming weeks!&lt;/p&gt;
+&lt;h3 id=&#34;databricks-sql-serverless&#34;&gt;Databricks SQL Serverless&lt;/h3&gt;
+&lt;p&gt;SQL Serverless has been in private preview for a little while, but it&amp;rsquo;s going public, although unfortunately only on AWS for now. We got some great sight of what it can do though, and a good look at their Serverless roadmap. Some of the key takeaways on SQL Serverless were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There&amp;rsquo;s still a cluster, so it&amp;rsquo;s a little different to Synapse Serverless which is exciting.&lt;/li&gt;
+&lt;li&gt;Seeing start up times of around 10 seconds for initial query, but hope to have this as low as 2 seconds by the time it goes GA. 10 seconds may seem high, but remember right now it can take 5 minutes for a cluster to start up.&lt;/li&gt;
+&lt;li&gt;They are seeing customers achieve a 20-40% reduction in cost by eradicating wasted cluster uptime!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can see the roadmap here on my Twitter; . Serverless notebooks later this year by the looks of things!&lt;/p&gt;
+&lt;h3 id=&#34;project-lightspeed-streaming-improvements&#34;&gt;Project Lightspeed (Streaming Improvements)&lt;/h3&gt;
+&lt;p&gt;Databricks themselves have already published a ton of info on this, which you can find here;&lt;/p&gt;
+&lt;p&gt;The highlight for me is that they are talking about a 4x improvement in processing latency!&lt;/p&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 181; flex-basis: 436px&#34;&gt;
+		&lt;a href=&#34;https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/lightspeed.JPG&#34; data-size=&#34;902x496&#34;&gt;&lt;img src=&#34;https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/lightspeed.JPG&#34;
+				
+				width=&#34;902&#34;
+				height=&#34;496&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;Project Lightspeed Announcement.&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;Project Lightspeed Announcement.&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&#34;enzyme&#34;&gt;Enzyme&lt;/h3&gt;
+&lt;p&gt;A little bit cloak and dagger this one&amp;hellip; Not entirely sure where it fits or what it really is, but it looks to be an ELT project offering data ingestion/acquisition capabilities perhaps, a lot of talk about it&amp;rsquo;s ability to automatically choose the best method for incremental ingestion (or incrementalization as Michael Armbrust called it), such as append only, partition recompiling, or merging.&lt;/p&gt;
+&lt;p&gt;This came up during a session around Delta Live Tables, so suspect it&amp;rsquo;ll be implemented there, but I&amp;rsquo;d love to see it as part of Workflows (below) too. Time will tell&amp;hellip;&lt;/p&gt;
+&lt;h3 id=&#34;new-sql-rest-api&#34;&gt;New SQL REST API&lt;/h3&gt;
+&lt;p&gt;A new API targeted at Databricks SQL so you can launch queries at it from other services. Could enable things like embedding live visuals into web-apps backed by Databricks SQL.&lt;/p&gt;
+&lt;h3 id=&#34;photon-improvements&#34;&gt;Photon Improvements&lt;/h3&gt;
+&lt;p&gt;Firstly, it&amp;rsquo;s going Generally Available (GA), but they&amp;rsquo;ve made a bunch of improvements with it too.&lt;/p&gt;
+&lt;p&gt;Some cool enhancements with Photon with it going GA, such as faster query plan generation. The example given during the key note given showed plan generation taking 1.8 seconds before the improvements and being optimised down to 0.7 seconds - a very nice 60% improvement! In both cases the query took 0.3 seconds to execute, so great to see such a reduction in the plan generation, where the majority of time is being spent.&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s also something in the works called Metadata Pipelinging to further improve performance, and early tests have shown an additional 0.3 second improvement on the query above, which would mean a combined improvement of a whopping 83%!&lt;/p&gt;
+&lt;p&gt;Window Functions such as ROW_NUMBER and data sorting have both been optimised for improved performance. These will be in preview soon.&lt;/p&gt;
+&lt;h3 id=&#34;databricks-workflows&#34;&gt;Databricks Workflows&lt;/h3&gt;
+&lt;p&gt;A new method for orchestrating data platform operations within Databricks. It looks like a good start, but I think it has a little way to go before I&amp;rsquo;ll be picking it up over Data Factory.&lt;/p&gt;
+&lt;p&gt;For example it doesn&amp;rsquo;t look to have iterators yet (for each, while), the dependencies look a little basic as there&amp;rsquo;s no on-success/failure yet, but I believe all of this and more is on the roadmap. It does have parameters, but these weren&amp;rsquo;t included in the demo.&lt;/p&gt;
+&lt;p&gt;The default logging and monitoring looked great - super visual with some high level stats like late running pipelines.&lt;/p&gt;
+&lt;p&gt;If Enzyme (above) does turn out to be an acquisition engine, it would be lovely if it were integrated here&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Keep an eye on this, I think this could be big too.&lt;/p&gt;
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;That&amp;rsquo;s a 37,000 feet view of some of the data engineering focused announcements quite literally written whilst at 37,000 feet. There&amp;rsquo;s a ton of exciting stuff to dig into here, and I&amp;rsquo;m hyped to be getting stuck into it all - stay tuned for some deeper content on all of the above.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Lakehouse Serving Options - 2022</title>
         <link>https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/</link>
         <pubDate>Thu, 19 May 2022 00:00:00 +0000</pubDate>
