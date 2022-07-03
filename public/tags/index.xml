@@ -6,7 +6,88 @@
     <description>Recent content in Tags on Zach Stagers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.zachstagers.co.uk/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Community</title>
+      <link>https://www.zachstagers.co.uk/tags/community/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/community/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Databricks</title>
+      <link>https://www.zachstagers.co.uk/tags/databricks/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/databricks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Databricks Marketplace</title>
+      <link>https://www.zachstagers.co.uk/tags/databricks-marketplace/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/databricks-marketplace/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Delta</title>
+      <link>https://www.zachstagers.co.uk/tags/delta/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/delta/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Delta Sharing</title>
+      <link>https://www.zachstagers.co.uk/tags/delta-sharing/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/delta-sharing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Photon</title>
+      <link>https://www.zachstagers.co.uk/tags/photon/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/photon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Streaming</title>
+      <link>https://www.zachstagers.co.uk/tags/streaming/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/streaming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unity Catalog</title>
+      <link>https://www.zachstagers.co.uk/tags/unity-catalog/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/unity-catalog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Workflows</title>
+      <link>https://www.zachstagers.co.uk/tags/workflows/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.zachstagers.co.uk/tags/workflows/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Azure</title>
       <link>https://www.zachstagers.co.uk/tags/azure/</link>
@@ -35,15 +116,6 @@
     </item>
     
     <item>
-      <title>Databricks</title>
-      <link>https://www.zachstagers.co.uk/tags/databricks/</link>
-      <pubDate>Thu, 19 May 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.zachstagers.co.uk/tags/databricks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Lakehouse</title>
       <link>https://www.zachstagers.co.uk/tags/lakehouse/</link>
       <pubDate>Thu, 19 May 2022 00:00:00 +0000</pubDate>
@@ -67,15 +139,6 @@
       <pubDate>Wed, 23 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>https://www.zachstagers.co.uk/tags/security/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Community</title>
-      <link>https://www.zachstagers.co.uk/tags/community/</link>
-      <pubDate>Wed, 02 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.zachstagers.co.uk/tags/community/</guid>
       <description></description>
     </item>
     

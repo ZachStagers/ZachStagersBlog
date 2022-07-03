@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Data and AI Summit 2022 I&amp;rsquo;m absolutely buzzing after attending my first Data and AI Summit (DAAIS) in San Francisco last week (June 27th to 30th). Incredible key notes, fantastic venue and city, good people, and awesome after parties! Huge thank you to everyone at Databricks for putting the event together, and to Advancing Analytics for giving me the opportunity to attend.
+As I sit on my flight home, mind racing over the events of the week, I wanted to be productive and write up some of the key announcements and share some initial thoughts.'><title>Data and AI Summit 2022 Announcements</title>
+
+<link rel='canonical' href='https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Data and AI Summit 2022 Announcements'>
+<meta property='og:description' content='Data and AI Summit 2022 I&amp;rsquo;m absolutely buzzing after attending my first Data and AI Summit (DAAIS) in San Francisco last week (June 27th to 30th). Incredible key notes, fantastic venue and city, good people, and awesome after parties! Huge thank you to everyone at Databricks for putting the event together, and to Advancing Analytics for giving me the opportunity to attend.
+As I sit on my flight home, mind racing over the events of the week, I wanted to be productive and write up some of the key announcements and share some initial thoughts.'>
+<meta property='og:url' content='https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/'>
+<meta property='og:site_name' content='Zach Stagers'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Delta' /><meta property='article:tag' content='Databricks' /><meta property='article:tag' content='Streaming' /><meta property='article:tag' content='Photon' /><meta property='article:tag' content='Unity Catalog' /><meta property='article:tag' content='Delta Sharing' /><meta property='article:tag' content='Databricks Marketplace' /><meta property='article:tag' content='Workflows' /><meta property='article:tag' content='Community' /><meta property='article:published_time' content='2022-07-03T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-07-03T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/banner_data_and_ai_summit_2022_announcements.jpg' />
+<meta name="twitter:site" content="@ZachStagers">
+    <meta name="twitter:creator" content="@ZachStagers"><meta name="twitter:title" content="Data and AI Summit 2022 Announcements">
+<meta name="twitter:description" content="Data and AI Summit 2022 I&amp;rsquo;m absolutely buzzing after attending my first Data and AI Summit (DAAIS) in San Francisco last week (June 27th to 30th). Incredible key notes, fantastic venue and city, good people, and awesome after parties! Huge thank you to everyone at Databricks for putting the event together, and to Advancing Analytics for giving me the opportunity to attend.
+As I sit on my flight home, mind racing over the events of the week, I wanted to be productive and write up some of the key announcements and share some initial thoughts."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/banner_data_and_ai_summit_2022_announcements.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-204933390-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </head>
+    <body class="
+    article-page 
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "dark");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        on-phone--column extended
+    
+">
+    
+        <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub35248a3a3ee8b5868e42fcef031f48e_18677_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+            
+        
+        <h1 class="site-name"><a href="https://www.zachstagers.co.uk/">Zach Stagers</a></h1>
+        <h2 class="site-description">Principal Data Engineering Consultant at Advancing Analytics with over 10 years experience working with Microsoft data platforms.</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about-me/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About Me</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/data-and-ai-summit-2022-announcements/">
+                <img src="/p/data-and-ai-summit-2022-announcements/banner_data_and_ai_summit_2022_announcements.jpg"
+                        
+                        width="1500" 
+                        height="704" 
+                        loading="lazy"
+                        alt="Featured image of post Data and AI Summit 2022 Announcements" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/p/data-and-ai-summit-2022-announcements/">Data and AI Summit 2022 Announcements</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2022-07-03</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    7 min read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h3 id="data-and-ai-summit-2022">Data and AI Summit 2022</h3>
+<p>I&rsquo;m absolutely buzzing after attending my first Data and AI Summit (DAAIS) in San Francisco last week (June 27th to 30th). Incredible key notes, fantastic venue and city, good people, and awesome after parties! Huge thank you to everyone at Databricks for putting the event together, and to Advancing Analytics for giving me the opportunity to attend.</p>
+<p>As I sit on my flight home, mind racing over the events of the week, I wanted to be productive and write up some of the key announcements and share some initial thoughts. We&rsquo;ll definitely be diving deeper into each of these with more targeted posts &amp; videos over on our YouTube, and as we do that, I&rsquo;ll update this post with the relevant links.</p>
+<p>Anyway, here&rsquo;s a quick lowdown of some of the announcements in no particular order&hellip; Let me know what you&rsquo;re most excited to get a closer look at.</p>
+<h3 id="delta-20">Delta 2.0</h3>
+<p>One of the biggest cheers of the keynote was that Delta is being fully open sourced! Databricks continue to hare their incredible work to help drive our industry forward. Delta already has wide adoption, but with the open sourced version now being levelled up to the same standard as the &lsquo;proprietary&rsquo; one, this should help cement it as the default choice for lake-based storage.</p>
+<p>There were some announcements of things to come with Delta too, such as a optimised deletes and updates by removing single rows instead of having to completely rewrite the file. It&rsquo;ll be really interesting to see how this works, and just how much it boosts performance.</p>
+<p><figure style="flex-grow: 182; flex-basis: 439px">
+		<a href="/p/data-and-ai-summit-2022-announcements/delta.JPG" data-size="900x492"><img src="/p/data-and-ai-summit-2022-announcements/delta.JPG"
+				
+				width="900"
+				height="492"
+				loading="lazy"
+				alt="Delta Announcements.">
+		</a>
+		
+		<figcaption>Delta Announcements.</figcaption>
+		
+	</figure></p>
+<h3 id="delta-sharing-and-cleanrooms">Delta Sharing and Cleanrooms</h3>
+<p>Delta Sharing is going Generally Available (GA), and has had more connectors added this year (such as PowerBI), and has more connectors coming soon (such as Terraform, Tableau, and Airflow).</p>
+<p>On top of that, Cleanrooms was announced and has really caught my attention. It&rsquo;s part of Delta Sharing and provides a way of tightly controlling access to your shared data sets. It looks to include things like external query approval, which means you&rsquo;ll have total visibility of the data and aggregations people are trying (if approved) to view.</p>
+<p>This feels like it could be huge in industries like healthcare, finance, and other heavily regulated industries. I expect this&rsquo;ll unlock the ability for those with sensitive data to more easily work with third parties for data analysis and science, whilst never exposing PII type field, for example.</p>
+<p><figure style="flex-grow: 182; flex-basis: 437px">
+		<a href="/p/data-and-ai-summit-2022-announcements/cleanrooms.JPG" data-size="902x495"><img src="/p/data-and-ai-summit-2022-announcements/cleanrooms.JPG"
+				
+				width="902"
+				height="495"
+				loading="lazy"
+				alt="Cleanrooms Announcement.">
+		</a>
+		
+		<figcaption>Cleanrooms Announcement.</figcaption>
+		
+	</figure></p>
+<h3 id="databricks-marketplace">Databricks Marketplace</h3>
+<p>More than just a data asset marketplace for things like weather data, but also for ML models, solution accelerators like Hydr8, notebooks, and dashboards. There wasn&rsquo;t much detail given around actually listing something in the marketplace or charging options, so it&rsquo;ll be interesting to see how this all works. Could be handy.</p>
+<h3 id="spark-connect">Spark Connect</h3>
+<p>A new API for submitting Spark jobs. Will most likely open up better integration for IDE&rsquo;s such as VSCode, but also means other lightweight applications will have a way of submitting Spark jobs. Perhaps developing notebooks from your watch is just around the corner?</p>
+<p><figure style="flex-grow: 182; flex-basis: 438px">
+		<a href="/p/data-and-ai-summit-2022-announcements/spark_connect.JPG" data-size="900x493"><img src="/p/data-and-ai-summit-2022-announcements/spark_connect.JPG"
+				
+				width="900"
+				height="493"
+				loading="lazy"
+				alt="Spark Connect Announcement.">
+		</a>
+		
+		<figcaption>Spark Connect Announcement.</figcaption>
+		
+	</figure></p>
+<h3 id="unity-catalog">Unity Catalog</h3>
+<p>This has been much anticipated. Matei Zaharia himself came out on stage to demo this one, with CEO Ali Ghodsi saying they&rsquo;d put the &lsquo;smartest man in the company&rsquo; on the project!</p>
+<p>Matei&rsquo;s demo did a great job of showing off some of the lineage capabilities, with both up &amp; down stream lineage being available. Upstream being &ldquo;Where this entity was sourced from&rdquo; and downstream being &ldquo;Where this entity is fed into&rdquo;. Really handy for measuring impact of editting a particular notebook and building test plans for example.</p>
+<p>Simon Whiteley&rsquo;s already had a dig into this one and published a video, which you can see here; <a class="link" href="youtu.be/FCuuFGS3jFM" >Advancing Analytics YouTube; Unity Catalog Intro</a>.</p>
+<p>Unity Catalog will be going GA in the coming weeks!</p>
+<h3 id="databricks-sql-serverless">Databricks SQL Serverless</h3>
+<p>SQL Serverless has been in private preview for a little while, but it&rsquo;s going public, although unfortunately only on AWS for now. We got some great sight of what it can do though, and a good look at their Serverless roadmap. Some of the key takeaways on SQL Serverless were:</p>
+<ul>
+<li>There&rsquo;s still a cluster, so it&rsquo;s a little different to Synapse Serverless which is exciting.</li>
+<li>Seeing start up times of around 10 seconds for initial query, but hope to have this as low as 2 seconds by the time it goes GA. 10 seconds may seem high, but remember right now it can take 5 minutes for a cluster to start up.</li>
+<li>They are seeing customers achieve a 20-40% reduction in cost by eradicating wasted cluster uptime!</li>
+</ul>
+<p>You can see the roadmap here on my Twitter; . Serverless notebooks later this year by the looks of things!</p>
+<h3 id="project-lightspeed-streaming-improvements">Project Lightspeed (Streaming Improvements)</h3>
+<p>Databricks themselves have already published a ton of info on this, which you can find here;</p>
+<p>The highlight for me is that they are talking about a 4x improvement in processing latency!</p>
+<p><figure style="flex-grow: 181; flex-basis: 436px">
+		<a href="/p/data-and-ai-summit-2022-announcements/lightspeed.JPG" data-size="902x496"><img src="/p/data-and-ai-summit-2022-announcements/lightspeed.JPG"
+				
+				width="902"
+				height="496"
+				loading="lazy"
+				alt="Project Lightspeed Announcement.">
+		</a>
+		
+		<figcaption>Project Lightspeed Announcement.</figcaption>
+		
+	</figure></p>
+<h3 id="enzyme">Enzyme</h3>
+<p>A little bit cloak and dagger this one&hellip; Not entirely sure where it fits or what it really is, but it looks to be an ELT project offering data ingestion/acquisition capabilities perhaps, a lot of talk about it&rsquo;s ability to automatically choose the best method for incremental ingestion (or incrementalization as Michael Armbrust called it), such as append only, partition recompiling, or merging.</p>
+<p>This came up during a session around Delta Live Tables, so suspect it&rsquo;ll be implemented there, but I&rsquo;d love to see it as part of Workflows (below) too. Time will tell&hellip;</p>
+<h3 id="new-sql-rest-api">New SQL REST API</h3>
+<p>A new API targeted at Databricks SQL so you can launch queries at it from other services. Could enable things like embedding live visuals into web-apps backed by Databricks SQL.</p>
+<h3 id="photon-improvements">Photon Improvements</h3>
+<p>Firstly, it&rsquo;s going Generally Available (GA), but they&rsquo;ve made a bunch of improvements with it too.</p>
+<p>Some cool enhancements with Photon with it going GA, such as faster query plan generation. The example given during the key note given showed plan generation taking 1.8 seconds before the improvements and being optimised down to 0.7 seconds - a very nice 60% improvement! In both cases the query took 0.3 seconds to execute, so great to see such a reduction in the plan generation, where the majority of time is being spent.</p>
+<p>There&rsquo;s also something in the works called Metadata Pipelinging to further improve performance, and early tests have shown an additional 0.3 second improvement on the query above, which would mean a combined improvement of a whopping 83%!</p>
+<p>Window Functions such as ROW_NUMBER and data sorting have both been optimised for improved performance. These will be in preview soon.</p>
+<h3 id="databricks-workflows">Databricks Workflows</h3>
+<p>A new method for orchestrating data platform operations within Databricks. It looks like a good start, but I think it has a little way to go before I&rsquo;ll be picking it up over Data Factory.</p>
+<p>For example it doesn&rsquo;t look to have iterators yet (for each, while), the dependencies look a little basic as there&rsquo;s no on-success/failure yet, but I believe all of this and more is on the roadmap. It does have parameters, but these weren&rsquo;t included in the demo.</p>
+<p>The default logging and monitoring looked great - super visual with some high level stats like late running pipelines.</p>
+<p>If Enzyme (above) does turn out to be an acquisition engine, it would be lovely if it were integrated here&hellip;</p>
+<p>Keep an eye on this, I think this could be big too.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>That&rsquo;s a 37,000 feet view of some of the data engineering focused announcements quite literally written whilst at 37,000 feet. There&rsquo;s a ton of exciting stuff to dig into here, and I&rsquo;m hyped to be getting stuck into it all - stay tuned for some deeper content on all of the above.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/delta/">Delta</a>
+        
+            <a href="/tags/databricks/">Databricks</a>
+        
+            <a href="/tags/streaming/">Streaming</a>
+        
+            <a href="/tags/photon/">Photon</a>
+        
+            <a href="/tags/unity-catalog/">Unity Catalog</a>
+        
+            <a href="/tags/delta-sharing/">Delta Sharing</a>
+        
+            <a href="/tags/databricks-marketplace/">Databricks Marketplace</a>
+        
+            <a href="/tags/workflows/">Workflows</a>
+        
+            <a href="/tags/community/">Community</a>
+        
+    </section>
+
+
+    
+        <br/>
+        <br/>
+        <h2 class="article-title">Share this post</h2>
+            <section class="article-tags">
+        <a href="https://twitter.com/intent/tweet?text=Data%20and%20AI%20Summit%202022%20Announcements by @ZachStagers - https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fdata-and-ai-summit-2022-announcements%2f" target="_blank">
+            <img src="../../../../../Twitter_h16.png" alt="Twitter">
+        </a>
+        
+        <a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fdata-and-ai-summit-2022-announcements%2f&title=Data%20and%20AI%20Summit%202022%20Announcements&summary=Data%20and%20AI%20Summit%202022%20Announcements&source=www.zachstagers.co.uk" target="_blank">
+            <img src="../../../../../LinkedIn_h16.png" alt="LinkedIn">
+        </a>
+        
+        <a href="mailto:?subject=Data%20and%20AI%20Summit%202022%20Announcements&amp;body=I thought you might like this post by Zach Stagers; https%3a%2f%2fwww.zachstagers.co.uk%2fp%2fdata-and-ai-summit-2022-announcements%2f" target="_blank">
+            <img src="../../../../../Email_h16.png" alt="Email">
+        </a>
+    </section>
+    
+
+    
+
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+     
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 Zach Stagers
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.0.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

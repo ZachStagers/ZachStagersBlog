@@ -2,6 +2,45 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.zachstagers.co.uk/tags/community/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/p/data-and-ai-summit-2022-announcements/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/tags/databricks/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/tags/databricks-marketplace/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/tags/delta/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/tags/delta-sharing/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/tags/photon/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/post/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/tags/streaming/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/tags/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/tags/unity-catalog/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/tags/workflows/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.zachstagers.co.uk/</loc>
+    <lastmod>2022-07-03T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.zachstagers.co.uk/tags/azure/</loc>
     <lastmod>2022-05-19T00:00:00+00:00</lastmod>
   </url><url>
@@ -11,25 +50,13 @@
     <loc>https://www.zachstagers.co.uk/tags/data-serving/</loc>
     <lastmod>2022-05-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.zachstagers.co.uk/tags/databricks/</loc>
-    <lastmod>2022-05-19T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.zachstagers.co.uk/tags/lakehouse/</loc>
     <lastmod>2022-05-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.zachstagers.co.uk/p/lakehouse-serving-options-2022/</loc>
     <lastmod>2022-05-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.zachstagers.co.uk/post/</loc>
-    <lastmod>2022-05-19T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.zachstagers.co.uk/tags/synapse/</loc>
-    <lastmod>2022-05-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.zachstagers.co.uk/tags/</loc>
-    <lastmod>2022-05-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.zachstagers.co.uk/</loc>
     <lastmod>2022-05-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.zachstagers.co.uk/p/what-makes-a-good-lakehouse-serving-layer/</loc>
@@ -40,9 +67,6 @@
   </url><url>
     <loc>https://www.zachstagers.co.uk/tags/security/</loc>
     <lastmod>2022-03-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.zachstagers.co.uk/tags/community/</loc>
-    <lastmod>2022-02-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.zachstagers.co.uk/p/sqlbits-2022/</loc>
     <lastmod>2022-02-02T00:00:00+00:00</lastmod>
