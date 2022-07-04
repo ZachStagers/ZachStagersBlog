@@ -75,7 +75,7 @@ SQL Serverless has been in private preview for a little while, but it's going pu
 * Seeing start up times of around 10 seconds for initial query, but hope to have this as low as 2 seconds by the time it goes GA. 10 seconds may seem high, but remember right now it can take 5 minutes for a cluster to start up.
 * They are seeing customers achieve a 20-40% reduction in cost by eradicating wasted cluster uptime! 
 
-You can see the roadmap here on my Twitter; . Serverless notebooks later this year by the looks of things!
+You can see the roadmap here on my Twitter; [Serverless Roadmap](https://twitter.com/ZachStagers/status/1541861734968832000). Serverless notebooks later this year by the looks of things!
 
 
 ### Project Lightspeed (Streaming Improvements)

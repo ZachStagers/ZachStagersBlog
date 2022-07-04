@@ -75,7 +75,8 @@
 &lt;li&gt;Seeing start up times of around 10 seconds for initial query, but hope to have this as low as 2 seconds by the time it goes GA. 10 seconds may seem high, but remember right now it can take 5 minutes for a cluster to start up.&lt;/li&gt;
 &lt;li&gt;They are seeing customers achieve a 20-40% reduction in cost by eradicating wasted cluster uptime!&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;You can see the roadmap here on my Twitter; . Serverless notebooks later this year by the looks of things!&lt;/p&gt;
+&lt;p&gt;You can see the roadmap here on my Twitter; &lt;a class=&#34;link&#34; href=&#34;https://twitter.com/ZachStagers/status/1541861734968832000&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Serverless Roadmap&lt;/a&gt;. Serverless notebooks later this year by the looks of things!&lt;/p&gt;
 &lt;h3 id=&#34;project-lightspeed-streaming-improvements&#34;&gt;Project Lightspeed (Streaming Improvements)&lt;/h3&gt;
 &lt;p&gt;Databricks themselves have already published a ton of info on this, which you can find here;&lt;/p&gt;
 &lt;p&gt;The highlight for me is that they are talking about a 4x improvement in processing latency!&lt;/p&gt;
