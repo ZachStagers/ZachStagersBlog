@@ -89,9 +89,9 @@ The highlight for me is that they are talking about a 4x improvement in processi
 
 ### Enzyme
 
-A little bit cloak and dagger this one... Not entirely sure where it fits or what it really is, but it looks to be an ELT project offering data ingestion/acquisition capabilities perhaps, a lot of talk about it's ability to automatically choose the best method for incremental ingestion (or incrementalization as Michael Armbrust called it), such as append only, partition recompiling, or merging.
+A little bit cloak and dagger this one... Not entirely sure where it fits or what it really is, but it looks to be an ETL project built in to Delta Live Tables (DLT) offering data ingestion/acquisition capabilities perhaps, a lot of talk about it's ability to automatically choose the best method for incremental ingestion (or incrementalization as Michael Armbrust called it), such as append only, partition recompiling, or merging.
 
-This came up during a session around Delta Live Tables, so suspect it'll be implemented there, but I'd love to see it as part of Workflows (below) too. Time will tell...
+Sounds like a broad optimization to DLT, but if it does offer any acquisition capabilities then I'd love to see it as part of Workflows (below) too. Time will tell...
 
 
 ### New SQL REST API
