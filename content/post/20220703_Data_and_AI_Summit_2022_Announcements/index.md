@@ -26,7 +26,7 @@ Anyway, here's a quick lowdown of some of the announcements in no particular ord
 
 ### Delta 2.0
 
-One of the biggest cheers of the keynote was that Delta is being fully open sourced! Databricks continue to hare their incredible work to help drive our industry forward. Delta already has wide adoption, but with the open sourced version now being levelled up to the same standard as the 'proprietary' one, this should help cement it as the default choice for lake-based storage.
+One of the biggest cheers of the keynote was that Delta is being fully open sourced! Databricks continue to share their incredible work to help drive our industry forward. Delta already has wide adoption, but with the open sourced version now being levelled up to the same standard as the 'proprietary' one, this should help cement it as the default choice for lake-based storage.
 
 There were some announcements of things to come with Delta too, such as a optimised deletes and updates by removing single rows instead of having to completely rewrite the file. It'll be really interesting to see how this works, and just how much it boosts performance.
 
@@ -89,9 +89,9 @@ The highlight for me is that they are talking about a 4x improvement in processi
 
 ### Enzyme
 
-A little bit cloak and dagger this one... Not entirely sure where it fits or what it really is, but it looks to be an ETL project built in to Delta Live Tables (DLT) offering data ingestion/acquisition capabilities perhaps, a lot of talk about it's ability to automatically choose the best method for incremental ingestion (or incrementalization as Michael Armbrust called it), such as append only, partition recompiling, or merging.
+A little bit cloak and dagger this one… Not entirely sure where it fits or what it really is, but it looks to be an ETL optimization project for Delta Live Tables (DLT) offering data ingestion/acquisition capabilities perhaps, a lot of talk about it’s ability to automatically choose the best method for incremental ingestion (or incrementalization as Michael Armbrust called it), such as append only, partition recompiling, or merging.
 
-Sounds like a broad optimization to DLT, but if it does offer any acquisition capabilities then I'd love to see it as part of Workflows (below) too. Time will tell...
+Sounds like a broad optimization to DLT, but if it does offer any acquisition capabilities then I’d love to see it as part of Workflows (below) too. Time will tell…
 
 
 ### New SQL REST API
