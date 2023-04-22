@@ -5,7 +5,7 @@ paginate: 5
 title: Zach Stagers
 
 # Change it to your Disqus shortname before using
-disqusShortname: stack
+disqusShortname: zachstagers
 
 # GA Tracking ID
 googleAnalytics: UA-204933390-1
@@ -55,7 +55,7 @@ params:
             default: Licensed under CC BY-NC-SA 4.0
 
     comments:
-        enabled: true
+        enabled: false
         provider: disqus
 
         utterances:
